@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人注册</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="css/others.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+	</head>
+	<body>
+		<!--整体注册-->
+		<div id="register-all">
+			<!--右侧固定列-->
+			<a href="javascript:;" id="right-fixed"></a>
+			<!--注册头部-->
+			<div id="register-form-header">
+				<div class="header-main clear w">
+					<a href="javascript:;" class="logo"></a>
+					<div class="logo-title">
+						欢迎注册
+					</div>
+					<div class="header-right right">
+						已有账号？
+						<a href="login.html">
+							请登录
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--注册主体页面-->
+			<div class="register-container w">
+				<div class="container-main clear">
+					<!--左边注册表单-->
+					<div class="reg-form left">
+						<!--主要表单-->
+						<form action="php/reg.php" method="post" class="register-form">
+								<div id="username" class="filed">
+									<label class="title">用　户　名</label>
+									<i class="warning-title">您的账户名和登录名</i>
+									<input type="text" name="username" id="usernameIp" autocomplete="off"/>
+									<p></p>
+									<i class="i-status"></i>
+								</div>
+								<div id="password1" class="filed">
+									<label class="title">设 置 密 码</label>
+									<i class="warning-title">建议至少使用两种字符组合</i>
+									<input name="password1" id="password1Ip" type="password"/>
+									<p></p>
+									<div class="pwd-tip">
+										<span id="pwd-tip-span">
+											<i class="pwd"></i>
+											<i class="pwd-text"></i>
+										</span>
+									</div>
+									<i class="i-status"></i>
+								</div>
+								<div id="password2" class="filed">
+									<label class="title">确 认 密 码</label>
+									<i class="warning-title">请再次输入密码</i>
+									<input type="password" name="password2" id="password2Ip"/>
+									<p></p>
+									<i class="i-status"></i>
+								</div>
+								<div id="email" class="filed">
+									<label class="title">管理员口令</label>
+									<i class="warning-title">请输入管理员口令</i>
+									<input type="text" name="email" id="emailIp"/>
+									<p></p>
+									<i class="i-status"></i>
+								</div>
+								<div id="phone" class="filed">
+									<label class="title phone-area"><i>中国 0086</i>
+									<a href="javascript:;" class="adown"></a>
+									</label>
+									<i class="warning-title">建议使用常用手机</i>
+									<input type="text" name="tel" id="telIp"/>
+									<p></p>
+									<i class="i-status"></i>
+									<p class="email-block"><a href="javascript:;">注册成为管理员</a></p>
+								</div>
+								<!--<div id="yanzhengma" class="filed">
+									<label class="title">手机验证码</label>
+									<i class="warning-title">请输入手机验证码</i>
+									<input type="text"  name="telyanzhen" id="telyanzhenIp" autocomplete="off" />
+									<p></p>
+									<i class="i-status"></i>
+								</div>-->
+								<div id="button" class="filed">
+									<input type="submit" name="submit" id="submit" value="立即注册" class="submit"/>
+								</div>
+						</form>
+						<!--地区号码下拉框-->
+						<div id="area-phone-drop">
+							<div class="dropdown-main">
+								<a href="javascript:;" class="aup"></a>
+								<!--搜索框-->
+								<div class="search-bar">
+									<b class="search-icon"></b>
+									<input type="text" name="" id="inputSearch" value="" placeholder="搜索您的国家和地区"/>
+								</div>
+								<!--地区选择-->
+								<div id="result" class="clear">
+									<div class="capital-list">
+										<ul>
+											<li><a href="javascript:;" class="red-style">A</a></li>
+											<li><a href="javascript:;">B</a></li>
+											<li><a href="javascript:;">C</a></li>
+											<li><a href="javascript:;">D</a></li>
+											<li><a href="javascript:;">E</a></li>
+											<li><a href="javascript:;">F</a></li>
+											<li><a href="javascript:;">G</a></li>
+											<li><a href="javascript:;">H</a></li>
+											<li><a href="javascript:;">J</a></li>
+											<li><a href="javascript:;">K</a></li>
+											<li><a href="javascript:;">L</a></li>
+											<li><a href="javascript:;">M</a></li>
+											<li><a href="javascript:;">N</a></li>
+											<li><a href="javascript:;">P</a></li>
+											<li><a href="javascript:;">R</a></li>
+											<li><a href="javascript:;">S</a></li>
+											<li><a href="javascript:;">T</a></li>
+											<li><a href="javascript:;">W</a></li>
+											<li><a href="javascript:;">X</a></li>
+											<li><a href="javascript:;">Y</a></li>
+											<li><a href="javascript:;">Z</a></li>
+										</ul>	
+									</div>
+									<div class="current-capital">
+										<span id="currentCapital">
+										A	
+										</span>	
+										<span class="line"></span>
+									</div>		
+									<div class="country-list">
+										<div id="scrollbar2" class="scrollbar-all">
+												<div class="scrollbar  right">
+													<div class="scroll"></div>
+												</div>
+												<div class="viewport">
+													<div class="overview">		
+														<ul>
+															<li class="code-0061">
+																<i style="background-image: url(img/aodaliya_0061.png);"></i>
+																<span>澳大利亚</span>
+																<span class="bianhao">0061</span>
+															</li>
+															<li class="code-0093">
+																<i style="background-image: url(img/afuhan_0093.png);"></i>
+																<span>阿富汗</span>
+																<span class="bianhao">0093</span>
+															</li>
+															<li class="code-0994">
+																<i style="background-image: url(img/asaibaijiang_0994.png);"></i>
+																<span>阿塞拜疆</span>
+																<span class="bianhao">0994</span>
+															</li><li class="code-0061">
+																<i style="background-image: url(img/aodaliya_0061.png);"></i>
+																<span>澳大利亚</span>
+																<span class="bianhao">0061</span>
+															</li>
+															<li class="code-0093">
+																<i style="background-image: url(img/afuhan_0093.png);"></i>
+																<span>阿富汗</span>
+																<span class="bianhao">0093</span>
+															</li>
+															<li class="code-0994">
+																<i style="background-image: url(img/asaibaijiang_0994.png);"></i>
+																<span>阿塞拜疆</span>
+																<span class="bianhao">0994</span>
+															</li>
+															<li class="code-0061">
+																<i style="background-image: url(img/aodaliya_0061.png);"></i>
+																<span>澳大利亚</span>
+																<span class="bianhao">0061</span>
+															</li>
+															<li class="code-0093">
+																<i style="background-image: url(img/afuhan_0093.png);"></i>
+																<span>阿富汗</span>
+																<span class="bianhao">0093</span>
+															</li>
+															<li class="code-0994">
+																<i style="background-image: url(img/asaibaijiang_0994.png);"></i>
+																<span>阿塞拜疆</span>
+																<span class="bianhao">0994</span>
+															</li>
+															<li class="code-0061">
+																<i style="background-image: url(img/aodaliya_0061.png);"></i>
+																<span>澳大利亚</span>
+																<span class="bianhao">0061</span>
+															</li>
+															<li class="code-0093">
+																<i style="background-image: url(img/afuhan_0093.png);"></i>
+																<span>阿富汗</span>
+																<span class="bianhao">0093</span>
+															</li>
+															<li class="code-0994">
+																<i style="background-image: url(img/asaibaijiang_0994.png);"></i>
+																<span>阿塞拜疆</span>
+																<span class="bianhao">0994</span>
+															</li>
+														</ul>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+					<!--右边企业注册-->
+					<div class="form-company right">
+						<div class="company-reg">
+							<a href="javascript:;">
+								<i class="i-company"></i>
+								<span>企业用户注册</span>
+							</a>
+						</div>
+						<div class="inter-cust">
+							<a href="javascript:;">
+								<i class="i-global"></i>
+								<span>INTERNATIONAL<br>CUSTOMERS</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="register-footer" class="l-w">
+				<div class="links">
+					<a href="javascript:;">关于我们</a>
+					|
+					<a href="javascript:;">联系我们</a>
+					|
+					<a href="javascript:;">人才招聘</a>
+					|
+					<a href="javascript:;">商家入驻</a>
+					|
+					<a href="javascript:;">广告服务</a>
+					|
+					<a href="javascript:;">手机联系</a>
+					|
+					<a href="javascript:;">友情链接</a>
+					|
+					<a href="javascript:;">销售联盟</a>
+					|
+					<a href="javascript:;">社区</a>
+					|
+					<a href="javascript:;">公益</a>
+					|
+					<a href="javascript:;">English Site</a>				
+				</div>
+				<div class="copyright">
+       				 Copyright © 2004 - 2018  17.com 版权所有
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

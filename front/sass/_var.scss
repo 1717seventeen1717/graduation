@@ -1,0 +1,27 @@
+@mixin borderstyle($width,$style,$color){
+    border:$width $style $color;
+}
+
+@mixin positionstyle($method,$left,$top){
+    position:$method;
+    left:$left;
+    top:$top;
+}
+
+@mixin positionleftstyle($method,$left){
+    position:$method;
+    left:$left;
+}
+
+@mixin positiontopstyle($method,$top)
+{
+    position:$method;
+    top:$top;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  // IE8 filter
+  $opacity-ie: ($opacity * 100);
+  filter: alpha(opacity=$opacity-ie);
+}

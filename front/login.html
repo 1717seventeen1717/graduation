@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>十七-欢迎登录</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="css/others.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+	</head>
+	<body>
+		<!--整体登录界面-->
+		<div id="login-all">
+			<!--头部logo-->
+			<div id="login-form-header">
+				<div class="header-main clear l-w">
+					<div id="logo">
+						<a href="javascript:;" class="logo">
+							<!--<img src="img/17logo.png" alt="17" width="170" height="60"/>-->
+						</a>
+						<div class="logo-title-image">
+							
+						</div>
+					</div>
+					<a class="header-right right" href="javascript:;">
+						<b></b>
+						登录页面，调查问卷
+					</a>
+				</div>
+			</div>
+			<!--主体页面-->
+			<div id="content" class="clear">
+				<!--头部小提示-->
+				<div class="top-tips">
+					<div class="inner-tips">
+						<div class="inner-tips-main">
+							<i class="icon-tips"></i>
+							<p>依据《网络安全法》，为保障您的账户安全和正常使用，请尽快完成手机号验证！ 新版<a href="javascript:;" class="black">《隐私政策》</a>已上线，将更有利于保护您的个人隐私。</p>
+						</div>
+					</div>
+				</div>
+				<!--登录-->
+				<div class="login-wrap">
+					<div class="l-w clear main-image">
+						<div class="login-form right cl">
+							<!--表格头部提示-->
+							<div class="tips">
+								<div class="tips-main">
+									<i class="icon-tips">
+										
+									</i>
+									<p>我们不会以任何理由要求您转账汇款，谨防诈骗。</p>
+								</div>
+							</div>
+							<!--表格tab切换部分-->
+							<!--表格tab切换左边-->
+							<div class="tab-left login-tab">
+								<a href="javascript:;">扫码登录</a>
+							</div>
+							<!--表格tab切换右边-->
+							<div class="tab-right login-tab">
+								<a href="javascript:;" class="checked">账户登录</a>
+							</div>
+							<!--隔开部分-->
+							<!--<div class="msg-wrap">
+								
+							</div>-->
+							<!--左边二维码部分（隐藏）-->
+							<div style="display: none;">
+								
+							</div>
+							<!--右边表单部分-->
+							<p id="warning">请您再次登录</p>
+							<div class="right-form">
+								<div class="form">
+									<form action="php/login.php" method="post" id="login-form">
+										<div id="username" class="filed">
+											<label class="title"></label>
+											<input type="" name="name" id="e-u-t" value="" placeholder="邮箱/用户名/已验证手机" class="reg-login" autocomplete="off"/>
+											
+											<i class="i-status"></i>
+										</div>
+										<div id="password1" class="filed">
+											<label class="titlesd"></label>
+											<input type="password" name="pass" id="pwd" value="" placeholder="密码" class="reg-login" autocomplete="off"/>
+											
+											<i class="i-status"></i>
+										</div>
+										<div class="forget">
+											
+										<span class="forgetpwd">
+											<a href="javascript:;">
+												忘记密码
+											</a>
+										</span>
+										
+										</div>
+										<div class="login-btn">
+											<div id="button" class="filed-btn">
+												<input type="button" name="submit" id="submit" value="登录" />
+											</div>
+										</div>
+									</form>
+								</div>
+								<!--右部底部微信QQ等-->
+								<div class="wechat-qq">
+									<ul class="clear">
+										<li>
+											<a href="javascript:;">
+												<!--<b class="qq-icon"></b>-->
+												<input type="radio" name="radio" id="Manager" value="" class="qq-icon"/>
+												<span>
+													管理员
+												</span>
+												<span class="line">|</spa>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<!--<b class="wechat-icon"></b>-->
+												<input type="radio" name="radio" id="Person" value="" class="wechat-icon"/>
+												<span>
+													普通用户
+												</span>
+											</a>
+										</li>
+										<li class="quickreg">
+											<div>
+												<div class="reg-list">
+													<a href="javascript:;">
+														<b></b>立即注册
+													</a>
+												</div>
+											</div>	
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="login-footer" class="l-w">
+				<div class="links">
+					<a href="javascript:;">关于我们</a>
+					|
+					<a href="javascript:;">联系我们</a>
+					|
+					<a href="javascript:;">人才招聘</a>
+					|
+					<a href="javascript:;">商家入驻</a>
+					|
+					<a href="javascript:;">广告服务</a>
+					|
+					<a href="javascript:;">手机联系</a>
+					|
+					<a href="javascript:;">友情链接</a>
+					|
+					<a href="javascript:;">销售联盟</a>
+					|
+					<a href="javascript:;">社区</a>
+					|
+					<a href="javascript:;">公益</a>
+					|
+					<a href="javascript:;">English Site</a>				
+				</div>
+				<div class="copyright">
+       				 Copyright © 2004 - 2018  17.com 版权所有
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

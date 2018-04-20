@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>详情页</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="css/font.css"/>
+    <style type="text/css">
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .wrap {
+        width: 1000px;
+        height: 500px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    #spic {
+        width: 400px;
+        height: 400px;
+        border: 1px solid #000;
+        float: left;
+        position: relative;
+    }
+    
+    #spic img {
+        width: 400px;
+        height: 400px;
+    }
+    
+    #sf {
+        background: orange;
+        opacity: 0.3;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        visibility: hidden;
+    }
+    
+    #bf {
+        width: 400px;
+        height: 500px;
+        border: 1px solid #000;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        left: 10px;
+        visibility: hidden;
+    }
+    
+    #bf img {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+    
+    #ulist {
+        position: absolute;
+        left: 0px;
+        bottom: 15px;
+        width: 402px;
+        height: 56px;
+        overflow: hidden;
+    }
+    
+    #ulist a {
+        float: left;
+        width: 10px;
+        height: 54px;
+        border: 1px solid #ccc;
+        text-decoration: none;
+        line-height: 56px;
+        text-align: center;
+        background: #fff;
+    }
+    
+    #list {
+        float: left;
+        margin-left: 18px;
+        width: 372px;
+        position: relative;
+    }
+    
+    ul {
+        list-style: none;
+        float: left;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+    
+    ul li {
+        float: left;
+        width: 56px;
+        height: 56px;
+        padding-right: 6px;
+    }
+    
+    ul li img {
+        width: 52px;
+        height: 52px;
+        border: 1px solid #ccc;
+    }
+    
+    #right {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        color: #333;
+    }
+    
+    #left {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 2;
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+			<div id="header-nav">
+					<div class="header-nav-main">
+						<ul class="left">
+							<li class="nav-area">
+								<div class="nav-area-main">
+								<i class="iconfont"></i>	
+								<span class="ul-areamini-text" data-id="1" title="北京">北京</span>
+								<!--地名下拉框-->
+								<div class="nav-left-drop">
+								<p class="white-block"></p>
+								<ul class="nav-left-drop-ul clear" >
+									<li><a href="javascript:;" class="selected">北京</a></li>
+									<li><a href="javascript:;">上海</a></li>
+									<li><a href="javascript:;">天津</a></li>
+									<li><a href="javascript:;">重庆</a></li>
+									<li><a href="javascript:;">河北</a></li>
+									<li><a href="javascript:;">山西</a></li>
+									<li><a href="javascript:;">河南</a></li>
+									<li><a href="javascript:;">辽宁</a></li>
+									<li><a href="javascript:;">吉林</a></li>
+									<li><a href="javascript:;">黑龙江</a></li>
+									<li><a href="javascript:;">山西</a></li>
+									<li><a href="javascript:;">上海</a></li>
+									<li><a href="javascript:;">天津</a></li>
+									<li><a href="javascript:;">重庆</a></li>
+									<li><a href="javascript:;">河北</a></li>
+									<li><a href="javascript:;">山西</a></li>
+									<li><a href="javascript:;">河南</a></li>
+									<li><a href="javascript:;">辽宁</a></li>
+									<li><a href="javascript:;">吉林</a></li>
+									<li><a href="javascript:;">黑龙江</a></li>
+									<li><a href="javascript:;">上海</a></li>
+									<li><a href="javascript:;">天津</a></li>
+									<li><a href="javascript:;">重庆</a></li>
+									<li><a href="javascript:;">河北</a></li>
+									<li><a href="javascript:;">山西</a></li>
+									<li><a href="javascript:;">山西</a></li>
+									<li><a href="javascript:;">河南</a></li>
+									<li><a href="javascript:;">辽宁</a></li>
+									<li><a href="javascript:;">吉林</a></li>
+									<li><a href="javascript:;">黑龙江</a></li>
+									<li><a href="javascript:;">上海</a></li>
+									<li><a href="javascript:;">天津</a></li>
+									<li><a href="javascript:;">重庆</a></li>
+									<li><a href="javascript:;">河北</a></li>
+									<li><a href="javascript:;">山西</a></li>
+								</ul>	
+								</div>	
+								</div>
+							</li>
+						</ul>
+						<ul class="right true-nav clear">
+							<!--
+	                        	作者：offline
+	                        	时间：2018-03-23
+	                        	描述：登录注册
+	                        -->
+							<li class="in-main lrp">
+								<a href="javascript:;" class="in-login">你好，请登录</a>
+								
+								<a href="register.html" class="in-register">免费注册</a>
+							</li>
+							<li class="spacer"></li>
+							<li class="my-order lrp"><a href="javascript:;">我的订单</a></li>
+							<li class="spacer"></li>
+							<!--
+	                        	作者：offline
+	                        	时间：2018-03-23
+	                        	描述：我的京东
+	                        -->
+							<li class="myjd">
+								<div class="r-icon important-right lrp">
+								<a href="javascript:;">我的京东</a>
+								<i class="iconfont"></i>
+								</div>
+							<div class="dropdown">
+								<div class="white-block"></div>
+								<div class="dd1">
+									<ul class="clear">
+										<li><a href="javascript">待处理订单</a>
+										</li>
+										<li><a href="javascript">消息</a>
+										</li>
+										<li><a href="javascript">返修退换货</a>
+										</li>
+										<li><a href="javascript">我的回答</a>
+										</li>
+										<li><a href="javascript">降价商品</a>
+										</li>
+										<li><a href="javascript">我的关注</a>
+										</li>
+									</ul>
+								</div>
+								<div class="dd2">
+									<ul class="clear">
+										<li><a href="javascript">我的京豆</a>
+										</li>
+										<li><a href="javascript">我的优惠券</a>
+										</li>
+										<li><a href="javascript">我的白条</a>
+										</li>
+										<li><a href="javascript">我的理财</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							</li>
+							<li class="spacer"></li>
+							<!--
+	                        	作者：offline
+	                        	时间：2018-03-23
+	                        	描述：京东会员
+	                        -->
+							<li class="lrp"><a href="javascript:;">京东会员</a></li>
+							<li class="spacer"></li>
+							<!--
+	                        	作者：offline
+	                        	时间：2018-03-23
+	                        	描述：企业采购
+	                        -->
+							<li class="lrp"><a href="javascript:;">企业采购</a></li>
+							<li class="spacer"></li>
+							<!--
+	                        	作者：offline
+	                        	时间：2018-03-23
+	                        	描述：客户服务
+	                        -->
+							<li class="customer-server"><div class="r-icon important-right lrp">
+								客户服务<i class="iconfont"></i>
+							</div>
+							<div class="dropdown">
+								<div class="white-block-l"></div>
+								<ul class="dd1">
+								<div class="ddheader">
+								客户	
+								</div>
+									<li><a href="javascript:;">帮助中心</a></li>
+									<li><a href="javascript:;">售后服务</a></li>
+									<li><a href="javascript:;">在线客服</a></li>
+									<li><a href="javascript:;">意见反馈</a></li>
+									<li><a href="javascript:;">电话客服</a></li>
+									<li><a href="javascript:;">客服邮箱</a></li>
+									<li><a href="javascript:;">金融咨询</a></li>
+									<li><a href="javascript:;">售全球客服</a></li>
+								</ul>
+								<ul class="dd2">
+								<div class="ddheader">
+								商户	
+								</div>
+									<li><a href="javascript:;">合作招聘</a></li>
+									<li><a href="javascript:;">学习中心</a></li>
+									<li><a href="javascript:;">商家后台</a></li>
+									<li><a href="javascript:;">京麦工作台</a></li>
+									<li><a href="javascript:;">商家帮助</a></li>
+									<li><a href="javascript:;">规则平台</a></li>
+								</ul>
+							</div>
+							</li>
+							<li class="spacer"></li>
+							<!--
+	                        	作者：offline
+	                        	时间：2018-03-23
+	                        	描述：网站导航
+	                        -->
+							<li class="navigation"><div class="r-icon important-right lrp">
+								网站导航<i class="iconfont"></i>
+							</div>
+								<!--<div class="white-block"></div>-->
+							<div class="dropdown specialdd">
+								<ul class="dd1">
+									<div class="ddheader">
+									特色主题	
+									</div>
+									<li><a href="javascript">京东试用</a></li>
+									<li><a href="javascript">京东金融</a></li>
+									<li><a href="javascript">全球售</a></li>
+									<li><a href="javascript">国际站</a></li>
+									<li><a href="javascript">京东会员</a></li>
+									<li><a href="javascript">京东预售</a></li>
+									<li><a href="javascript">京东试用</a></li>
+									<li><a href="javascript">京东金融</a></li>
+									<li><a href="javascript">全球售</a></li>
+									<li><a href="javascript">国际站</a></li>
+									<li><a href="javascript">京东会员</a></li>
+									<li><a href="javascript">京东预售</a></li>
+									<li><a href="javascript">京东试用</a></li>
+									<li><a href="javascript">京东金融</a></li>
+									<li><a href="javascript">全球售</a></li>
+									<li><a href="javascript">国际站</a></li>
+									<li><a href="javascript">京东会员</a></li>
+									<li><a href="javascript">京东预售</a></li>
+								</ul>
+								<ul class="dd2">
+									<div class="ddheader">
+									行业频道	
+									</div>
+									<li><a href="javascript">手机</a></li>
+									<li><a href="javascript">智能数码</a></li>
+									<li><a href="javascript">玩3C</a></li>
+									<li><a href="javascript">电脑办公</a></li>
+									<li><a href="javascript">手机</a></li>
+									<li><a href="javascript">智能数码</a></li>
+									<li><a href="javascript">玩3C</a></li>
+									<li><a href="javascript">电脑办公</a></li>
+									<li><a href="javascript">手机</a></li>
+									<li><a href="javascript">智能数码</a></li>
+									<li><a href="javascript">玩3C</a></li>
+									<li><a href="javascript">电脑办公</a></li>
+									<li><a href="javascript">手机</a></li>
+									<li><a href="javascript">智能数码</a></li>
+									<li><a href="javascript">玩3C</a></li>
+									<li><a href="javascript">电脑办公</a></li>
+								</ul>
+								<ul class="dd3">
+									<div class="ddheader">
+									生活服务	
+									</div>
+									<li><a href="javascript">京东众筹</a></li>
+									<li><a href="javascript">白条</a></li>
+									<li><a href="javascript">京东金融APP</a></li>
+									<li><a href="javascript">京东小金库</a></li>
+									<li><a href="javascript">京东众筹</a></li>
+									<li><a href="javascript">白条</a></li>
+									<li><a href="javascript">京东金融APP</a></li>
+									<li><a href="javascript">京东小金库</a></li>
+									<li><a href="javascript">京东众筹</a></li>
+									<li><a href="javascript">白条</a></li>
+									<li><a href="javascript">京东金融APP</a></li>
+									<li><a href="javascript">京东小金库</a></li>
+									<li><a href="javascript">京东众筹</a></li>
+									<li><a href="javascript">白条</a></li>
+									<li><a href="javascript">京东金融APP</a></li>
+									<li><a href="javascript">京东小金库</a></li>
+								</ul>
+								<ul class="dd4">
+									<div class="ddheader">
+									更多精选	
+									</div>
+									<li><a href="javascript">合作招商</a></li>	
+									<li><a href="javascript">京东通信</a></li>	
+									<li><a href="javascript">京东E卡</a></li>	
+									<li><a href="javascript">企业采购</a></li>
+									<li><a href="javascript">合作招商</a></li>	
+									<li><a href="javascript">京东通信</a></li>	
+									<li><a href="javascript">京东E卡</a></li>	
+									<li><a href="javascript">企业采购</a></li>	
+									<li><a href="javascript">合作招商</a></li>	
+									<li><a href="javascript">京东通信</a></li>	
+									<li><a href="javascript">京东E卡</a></li>	
+									<li><a href="javascript">企业采购</a></li>	
+								</ul>
+							</div>
+							</li>
+							<li class="spacer"></li>
+							<li class="lrp"><div class="mobile lrp">手机京东</div>
+								<div class="mobile-code">
+								<div class="mobile-code-main"></div>
+								</div>
+								<div class="three-code clear mobile-pop">
+								<ul class="clear mobile-main">
+									<li>
+										<div class="image left">
+									<img src="img/jingdongcode.png"/>			
+										</div>
+										<ul class="clear dd1">
+											<li><a href="javascript:;">手机京东</a>
+											<p>新人专享大礼包</p>
+											<div class="aai">
+											<ul class="aai-bg clear">
+												<li><a href="javascript:;" class="one"></a></li>
+												<li><a href="javascript:;" class="two"></a></li>
+												<li><a href="javascript:;" class="three"></a></li>
+											</ul>
+											</div>
+											</li>
+										</ul>
+									</li>
+								</ul>	
+								<ul class="clear mobile-main">
+									<li>
+										<div class="image left">
+									<img src="img/jingdongcode.png"/>			
+										</div>
+										<ul class="clear dd1">
+											<li><a href="javascript:;">手机京东</a>
+											<p>新人专享大礼包</p>
+											<div class="aai">
+											<ul class="aai-bg clear">
+												<li><a href="javascript:;" class="one"></a></li>
+												<li><a href="javascript:;" class="two"></a></li>
+												<li><a href="javascript:;" class="three"></a></li>
+											</ul>
+											</div>
+											</li>
+										</ul>
+									</li>
+								</ul>	
+								<ul class="clear mobile-main">
+									<li>
+										<div class="image left">
+									<img src="img/jingdongcode.png"/>			
+										</div>
+										<ul class="clear dd1">
+											<li><a href="javascript:;">手机京东</a>
+											<p>新人专享大礼包</p>
+											<div class="aai">
+											<ul class="aai-bg clear">
+												<li><a href="javascript:;" class="one"></a></li>
+												<li><a href="javascript:;" class="two"></a></li>
+												<li><a href="javascript:;" class="three"></a></li>
+											</ul>
+											</div>
+											</li>
+										</ul>
+									</li>
+								</ul>	
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+	
+    <div class="wrap">
+        <div id="spic">
+            <img src="img/bigmengniu.jpg" alt="" sid="5" class="id-image">
+            <div id="sf"></div>
+        </div>
+        <div id="bf">
+            <img src="img/bigmengniu.jpg" alt="" id="bpic">
+        </div>
+        <div id="ulist">
+            <a href="javascript:;" id="left">&lt;</a>
+            <div id="list">
+                <ul>
+                    <li><img src="img/bigmengniu.jpg" alt=""></li>
+                    <li><img src="img/mengniu0.jpg" alt=""></li>
+                    <li><img src="img/mengniu1.jpg" alt=""></li>
+                    <li><img src="img/mengniu2.jpg" alt=""></li>
+                    <li><img src="img/mengniu3.jpg" alt=""></li>
+                   	<li><img src="img/mengniu4.jpg" alt=""></li>
+                   	<li><img src="img/mengniu0.jpg" alt=""></li>
+                    <li><img src="img/mengniu1.jpg" alt=""></li>
+                    <li><img src="img/mengniu2.jpg" alt=""></li>
+                    <li><img src="img/mengniu3.jpg" alt=""></li>
+                   	<li><img src="img/mengniu4.jpg" alt=""></li>
+                </ul>
+            </div>
+            <a href="javascript:;" id="right">&gt;</a>
+        </div>
+        <div class="p-name">
+				<a class="loadt" href="##">蒙牛牛奶</a>
+			</div>
+			<div class="p-price"><strong><em>￥</em><i class="loadpcp">50</i></strong></div>
+			<div class="p-btn">
+				<input type="text" id="count" value="1" />
+				<a href="javascript:void(0)"><b></b>加入购物车</a>
+		</div>
+    </div> 
+	<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/move.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/detail.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
