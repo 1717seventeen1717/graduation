@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
 		<link rel="stylesheet" type="text/css" href="css/others.css"/>
 		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link type="favicon" rel="shortcut icon" href="img/favicon.ico" />
 	</head>
 	<body>
 		<!--整体注册-->
@@ -33,7 +34,7 @@
 					<!--左边注册表单-->
 					<div class="reg-form left">
 						<!--主要表单-->
-						<form action="php/reg.php" method="post" class="register-form">
+						<form action="http://localhost:3000/users/data" method="post" class="register-form" autocomplete="off">
 								<div id="username" class="filed">
 									<label class="title">用　户　名</label>
 									<i class="warning-title">您的账户名和登录名</i>
@@ -44,7 +45,7 @@
 								<div id="password1" class="filed">
 									<label class="title">设 置 密 码</label>
 									<i class="warning-title">建议至少使用两种字符组合</i>
-									<input name="password1" id="password1Ip" type="password"/>
+									<input name="password" id="password1Ip" type="password"/>
 									<p></p>
 									<div class="pwd-tip">
 										<span id="pwd-tip-span">
@@ -61,10 +62,10 @@
 									<p></p>
 									<i class="i-status"></i>
 								</div>
-								<div id="email" class="filed">
+								<div id="manager" class="filed">
 									<label class="title">管理员口令</label>
 									<i class="warning-title">请输入管理员口令</i>
-									<input type="text" name="email" id="emailIp"/>
+									<input type="password" name="manager" id="managerIp"/>
 									<p></p>
 									<i class="i-status"></i>
 								</div>
@@ -73,10 +74,10 @@
 									<a href="javascript:;" class="adown"></a>
 									</label>
 									<i class="warning-title">建议使用常用手机</i>
-									<input type="text" name="tel" id="telIp"/>
+									<input type="text" name="phoneNumber" id="telIp"/>
 									<p></p>
 									<i class="i-status"></i>
-									<p class="email-block"><a href="javascript:;">注册成为管理员</a></p>
+									<p class="manager-block"><a href="javascript:;">注册成为管理员</a></p>
 								</div>
 								<!--<div id="yanzhengma" class="filed">
 									<label class="title">手机验证码</label>
@@ -86,7 +87,7 @@
 									<i class="i-status"></i>
 								</div>-->
 								<div id="button" class="filed">
-									<input type="submit" name="submit" id="submit" value="立即注册" class="submit"/>
+									<input type="button" name="submit" id="submit" value="立即注册" class="submit"/>
 								</div>
 						</form>
 						<!--地区号码下拉框-->

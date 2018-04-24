@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>十七-欢迎登录</title>
+		<link type="favicon" rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
 		<link rel="stylesheet" type="text/css" href="css/others.css"/>
 		<link rel="stylesheet" type="text/css" href="css/font.css"/>
@@ -72,10 +73,10 @@
 							<p id="warning">请您再次登录</p>
 							<div class="right-form">
 								<div class="form">
-									<form action="php/login.php" method="post" id="login-form">
+									<form action="http://localhost:3000/users/listsomething" method="post" id="login-form"> 
 										<div id="username" class="filed">
 											<label class="title"></label>
-											<input type="" name="name" id="e-u-t" value="" placeholder="邮箱/用户名/已验证手机" class="reg-login" autocomplete="off"/>
+											<input type="text" name="name" id="e-u-t" value="" placeholder="邮箱/用户名/已验证手机" class="reg-login" autocomplete="off"/>
 											
 											<i class="i-status"></i>
 										</div>
@@ -107,7 +108,7 @@
 										<li>
 											<a href="javascript:;">
 												<!--<b class="qq-icon"></b>-->
-												<input type="radio" name="radio" id="Manager" value="" class="qq-icon"/>
+												<input type="radio" name="radio" id="Manager" value="管理员" class="qq-icon" />
 												<span>
 													管理员
 												</span>
@@ -117,7 +118,7 @@
 										<li>
 											<a href="javascript:;">
 												<!--<b class="wechat-icon"></b>-->
-												<input type="radio" name="radio" id="Person" value="" class="wechat-icon"/>
+												<input type="radio" name="radio" id="Person" value="普通用户" class="wechat-icon" />
 												<span>
 													普通用户
 												</span>

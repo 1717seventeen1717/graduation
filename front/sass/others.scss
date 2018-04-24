@@ -244,14 +244,17 @@ body{
                 outline: none;
                 cursor: pointer;
             }   
-            .email-block{
+            .manager-block{
                 position: absolute;
                 bottom: -43px;
                 font-size: 12px;
                 right: 0;
                 display: block;
+                a{
+                    color: #333;
+                }
             }
-            #email{
+            #manager{
                 display: none;
             }
         }

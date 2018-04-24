@@ -68,3 +68,32 @@ $(function () {
     });
 });
 
+//登录时显示当前登录的账号
+;(function(){
+	function getCookie(key){
+			var str=decodeURI(document.cookie);
+//			console.log(str);
+			var arr=str.split(';');
+//			console.log(arr);
+			for(var i=0;i<arr.length;i++){
+				var arr1=arr[i].split('=');
+ 				if(arr1[0]==key){
+//					console.log(arr1[1]);
+					return arr1[1];
+				}
+			}
+	}
+	var cookie=getCookie('UserName');
+//	console.log(cookie);
+	$oA=$('.publicHeaderR .in-login');
+	$oH=$('.wFont h2');
+	if(cookie){
+		$oA.html("您好:"+cookie+"");
+		$oH.html(cookie);
+	}
+	else{
+//		alert(1);
+		$oA.html("请登录");
+	}
+})();
+

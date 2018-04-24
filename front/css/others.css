@@ -201,13 +201,15 @@ body {
     border: 0;
     outline: none;
     cursor: pointer; }
-  #register-all .register-container .register-form .email-block {
+  #register-all .register-container .register-form .manager-block {
     position: absolute;
     bottom: -43px;
     font-size: 12px;
     right: 0;
     display: block; }
-  #register-all .register-container .register-form #email {
+    #register-all .register-container .register-form .manager-block a {
+      color: #333; }
+  #register-all .register-container .register-form #manager {
     display: none; }
 
 #register-all #area-phone-drop {
