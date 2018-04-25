@@ -47,13 +47,38 @@ exports.list = function(req, res, next) {
     }
 }
 
-//查询所有数据
-exports.listEverything = function(req, res, next) {
+
+//模糊查询用户
+exports.list = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
     var limit = req.body.limit ? req.body.limit : 3; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
+    if (req.body.username && req.body.username.trim().length > 0) {
+        username = req.body.username;
+        //     console.log(username);
+        queryCondition = {
+            username: new RegExp(username, "i")
+        };
+        //     console.log(queryCondition);
+        User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+            res.json(result);
+        });
+    }
+}
+
+
+
+
+
+//查询所有数据
+exports.listEverything = function(req, res, next) {
+    var page = req.body.page ? req.body.page : 1;
+    var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
+    var queryCondition = {}; //查询条件里面写查询语句
+    // console.log(page, limit);
     User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+        console.log(result);
         res.json(result);
     });
 }

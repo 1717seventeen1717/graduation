@@ -1,0 +1,903 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        (function () {
+            window.print();
+        })();
+    </script>
+    <style type="text/css">
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        body
+        {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 12px;
+            width: 210mm;
+            text-align: center;
+        }
+        
+        a
+        {
+            text-decoration: none;
+        }
+        
+        .bold
+        {
+            font-weight: bold;
+        }
+        
+        ul, li
+        {
+            list-style: none;
+        }
+        
+        img
+        {
+            border: none;
+        }
+        
+        #print-content
+        {
+            width: 98%;
+            margin: 10px auto;
+        }
+        
+        #print-content h1
+        {
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .floatLeft
+        {
+            float: left;
+        }
+        .floatLeft50
+        {
+            float: left;
+            margin-left: 50px;
+        }
+        .floatRight
+        {
+            float: right;
+        }
+        
+        .headInfo
+        {
+            margin: 5px auto;
+            height: 16px;
+        }
+        
+        table
+        {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #000;
+        }
+        
+        .tableTopBorder_3
+        {
+            border-top: 0px solid #000;
+        }
+        
+        td, th
+        {
+            border: 1px solid #000;
+            text-align: center;
+            padding: 3px 5px;
+        }
+        
+        .signatureArea
+        {
+            height: 25px;
+            line-height: 25px;
+        }
+        .signatureArea .firstSpan
+        {
+            margin-right: 200px;
+        }
+        #print-content .header .titleArea
+        {
+            height: 50px;
+            position: relative;
+        }
+        #print-content .header h1
+        {
+            padding-top: 10px;
+        }
+        .printTm
+        {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        .contractTable td
+        {
+            text-align: left;
+        }
+        .contractTable th
+        {
+            font-weight: bold;
+        }
+        .printInput
+        {
+            width: 99%;
+            border: none;
+            background: none;
+        }
+        .font24
+        {
+            font-size: 24px;
+        }
+        .font20
+        {
+            font-size: 20px;
+        }
+        .width200
+        {
+            width: 200px;
+        }
+        .width180
+        {
+            width: 180px;
+        }
+        .btn
+        {
+            cursor: pointer;
+            padding: 2px 10px;
+            margin: 0px 10px;
+        }
+        @media print
+        {
+            .pageBreak
+            {
+                page-break-after: always; /*强制换页的关键*/
+            }
+            .noPrint
+            {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="print-content">
+        <div class="header clear">
+            <div class="titleArea">
+                <h1>
+                    订单表头</h1>
+            </div>
+        </div>
+        <table class="tableTopBorder_3">
+            <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        条码号
+                    </th>
+                    <th>
+                        原编号
+                    </th>
+                    <th>
+                        名称
+                    </th>
+                    <th>
+                        样品来源
+                    </th>
+                    <th>
+                        送样量(g)
+                    </th>
+                    <th>
+                        类型
+                    </th>
+                    <th>
+                        种类
+                    </th>
+                    <th>
+                        检验类型
+                    </th>
+                    <th>
+                        &nbsp;&nbsp;备注&nbsp;&nbsp;
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        BGG1000
+                    </td>
+                    <td>
+                        BGG1000
+                    </td>
+                    <td>
+                        吉单34
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        500
+                    </td>
+                    <td>
+                        种子
+                    </td>
+                    <td>
+                        自交系
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp; 纯度&nbsp;&nbsp; 发芽率&nbsp;&nbsp; 一致性&nbsp;&nbsp; 水分&nbsp;&nbsp; 净度&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00861
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        BGG1001
+                    </td>
+                    <td>
+                        BGG1001
+                    </td>
+                    <td>
+                        吉单38
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1000
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00862
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        3
+                    </td>
+                    <td>
+                        BGG1002
+                    </td>
+                    <td>
+                        BGG1002
+                    </td>
+                    <td>
+                        吉玉106
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1001
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00863
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        4
+                    </td>
+                    <td>
+                        BGG1003
+                    </td>
+                    <td>
+                        BGG1003
+                    </td>
+                    <td>
+                        春育8号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1002
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00864
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        5
+                    </td>
+                    <td>
+                        BGG1004
+                    </td>
+                    <td>
+                        BGG1004
+                    </td>
+                    <td>
+                        吉单88
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1003
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00865
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        6
+                    </td>
+                    <td>
+                        BGG1005
+                    </td>
+                    <td>
+                        BGG1005
+                    </td>
+                    <td>
+                        龙丰7号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1004
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00866
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        7
+                    </td>
+                    <td>
+                        BGG1006
+                    </td>
+                    <td>
+                        BGG1006
+                    </td>
+                    <td>
+                        远东1号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1005
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00867
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        8
+                    </td>
+                    <td>
+                        BGG1007
+                    </td>
+                    <td>
+                        BGG1007
+                    </td>
+                    <td>
+                        绿育9911
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1006
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00868
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        9
+                    </td>
+                    <td>
+                        BGG1008
+                    </td>
+                    <td>
+                        BGG1008
+                    </td>
+                    <td>
+                        九单64
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1007
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00869
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        10
+                    </td>
+                    <td>
+                        BGG1009
+                    </td>
+                    <td>
+                        BGG1009
+                    </td>
+                    <td>
+                        四育7号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1008
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00870
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pageBreak">
+            <!--如果需要强制换页就在上一页的未尾出加上此代码-->
+        </div>
+        <div class="header clear">
+            <div class="titleArea">
+                <h2>
+                    订单表头</h2>
+            </div>
+        </div>
+        <table class="tableTopBorder_3">
+            <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        条码号
+                    </th>
+                    <th>
+                        原编号
+                    </th>
+                    <th>
+                        名称
+                    </th>
+                    <th>
+                        样品来源
+                    </th>
+                    <th>
+                        送样量(g)
+                    </th>
+                    <th>
+                        类型
+                    </th>
+                    <th>
+                        种类
+                    </th>
+                    <th>
+                        检验类型
+                    </th>
+                    <th>
+                        &nbsp;&nbsp;备注&nbsp;&nbsp;
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        11
+                    </td>
+                    <td>
+                        BGG1010
+                    </td>
+                    <td>
+                        BGG1010
+                    </td>
+                    <td>
+                        四育8号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1009
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00871
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        12
+                    </td>
+                    <td>
+                        BGG1011
+                    </td>
+                    <td>
+                        BGG1011
+                    </td>
+                    <td>
+                        四育9号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1010
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00872
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        13
+                    </td>
+                    <td>
+                        BGG1012
+                    </td>
+                    <td>
+                        BGG1012
+                    </td>
+                    <td>
+                        四育10号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1011
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00873
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        14
+                    </td>
+                    <td>
+                        BGG1013
+                    </td>
+                    <td>
+                        BGG1013
+                    </td>
+                    <td>
+                        四育11号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1012
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00874
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        15
+                    </td>
+                    <td>
+                        BGG1014
+                    </td>
+                    <td>
+                        BGG1014
+                    </td>
+                    <td>
+                        四育12号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1013
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00875
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        16
+                    </td>
+                    <td>
+                        BGG1015
+                    </td>
+                    <td>
+                        BGG1015
+                    </td>
+                    <td>
+                        四育13号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1014
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00876
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        17
+                    </td>
+                    <td>
+                        BGG1016
+                    </td>
+                    <td>
+                        BGG1016
+                    </td>
+                    <td>
+                        四育14号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1015
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00877
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        18
+                    </td>
+                    <td>
+                        BGG1017
+                    </td>
+                    <td>
+                        BGG1017
+                    </td>
+                    <td>
+                        四育15号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1016
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00878
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        19
+                    </td>
+                    <td>
+                        BGG1018
+                    </td>
+                    <td>
+                        BGG1018
+                    </td>
+                    <td>
+                        四育16号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1017
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00879
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        20
+                    </td>
+                    <td>
+                        BGG1019
+                    </td>
+                    <td>
+                        BGG1019
+                    </td>
+                    <td>
+                        四育17号
+                    </td>
+                    <td>
+                        农业部征集
+                    </td>
+                    <td>
+                        1018
+                    </td>
+                    <td>
+                        果穗
+                    </td>
+                    <td>
+                        杂交种
+                    </td>
+                    <td width="95px">
+                        真实性&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        S1G00880
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

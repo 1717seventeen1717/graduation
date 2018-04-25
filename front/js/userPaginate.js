@@ -1,6 +1,5 @@
-//页面刷新时显示所有用户信息
 ;(function(){
-	$(document).ready(function display(){
+    $(document).ready(function display(){
     	var oTbody=$('.providerTable tbody');
 		//	console.log(oTbody.length);
 			var html='';
@@ -9,7 +8,7 @@
 				url:"http://localhost:3000/users/listEverything",
 				async:true
 			}).done(function(data){
-		
+		//页面刷新时显示所有用户信息
 		//		console.log(data.docs);
 				$.each(data.docs, function(i) {
 					var idRegExp = new RegExp(/^\w{0,22}/g);
@@ -34,17 +33,3 @@
     });
 })();
 
-//点击查询 搜索含有该字符的所有用户名信息
-
-;(function(){
-	var oSearch = $('input[value="查询"]');
-//	$('input[name="radio"]')
-	oSearch.mousedown(function(){
-		oSearch.css('background-color','#5d8410');
-		
-	});
-	
-	oSearch.mouseup(function(){
-		oSearch.css('background-color','');
-	});
-})();

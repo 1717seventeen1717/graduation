@@ -205,6 +205,7 @@ li{
     padding-left: 10px;
     border: 1px solid #8ab2d5;
     border-radius: 4px;
+    
 }
 .search input[type='button']{
     margin-left: 20px;
@@ -216,11 +217,12 @@ li{
     color: #fff;
     font-weight: bold;
     background:#87c212 url("../img/search.png") 10px center no-repeat;
+    cursor: pointer;
 }
-.search input[type='button']:focus{
+/*.search input[type='button']:focus{
     outline: none;
     background-color: #5d8410;
-}
+}*/
 .search a{
     width: 80px;
     padding-left:40px;
