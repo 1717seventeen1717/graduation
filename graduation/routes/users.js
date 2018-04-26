@@ -8,6 +8,8 @@ router.delete('/data/:id', dataCtrl.remove); //删除用户
 router.post('/list', dataCtrl.list); //查询用户
 router.post('/listsomething', dataCtrl.listsomthing); //查询用户以及密码
 router.post('/listEverything', dataCtrl.listEverything); //查询所有用户数据
+router.post('/listUserVague', dataCtrl.listUserVague); //模糊查询用户数据
+router.post('/listbyid', dataCtrl.listbyid); //根据id查询用户数据
 
 
 // /* GET users listing. */

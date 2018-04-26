@@ -76,8 +76,8 @@
 							url:'http://localhost:3000/users/listsomething',
 							data:{//将用户名和密码传输给后端
 								username:$username,
-								password:$password,
-								type:$type
+								password:$password
+//								type:$type
 							}
 						}).done(function(data){
 								console.log(data.docs);
@@ -99,7 +99,12 @@
 //									$('#submit').attr('type','submit');
 									addCookie('UserName',$username,7);
 									if($type=='管理员'){
-										location.href='indexmanager.html';//跳转到管理首页
+										if($Manager.attr('checked')){
+											location.href='indexmanager.html';//跳转到管理首页
+										}
+										else if($Person.attr('checked')){
+											location.href='index.html';
+										}
 									}
 									else if($type=='普通用户'){
 										location.href='index.html';//跳转到首页
@@ -114,7 +119,11 @@
 				});
 })();
 
-
+//;(function(){
+//	$(document).ready(function(){
+//  	$('input[name="radio"]').removeAttr('checked');
+//  });
+//})();
 ////选择复选框
 //(function(){
 //	var manager=$('#Manager');

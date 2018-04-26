@@ -324,17 +324,17 @@
                     }
                     
                 });
-                $.ajax({
-                    type: 'post',
-                    url: 'http://localhost:3000/users/data',
-                    data: { //注册的用户名传给后端
-                        username:$('#usernameIp').val(),
-                        password:$('#password1Ip').val(),
-                        phoneNumber:$('#telIp').val(),
-                        type: '普通用户',
-                    }
-                    
-                });
+//              $.ajax({
+//                  type: 'post',
+//                  url: 'http://localhost:3000/users/data',
+//                  data: { //注册的用户名传给后端
+//                      username:$('#usernameIp').val(),
+//                      password:$('#password1Ip').val(),
+//                      phoneNumber:$('#telIp').val(),
+//                      type: '普通用户',
+//                  }
+//                  
+//              });
         		window.location.href="login.html";
         	}
         	else

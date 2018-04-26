@@ -8,11 +8,11 @@ var begin;
 var end;
 function paginate(){
 		    	len =$(".providerTable tr").length - 1;  // 求这个表的总行数，剔除第一行介绍
-		    	console.log(len);
+//		    	console.log(len);
 		    	page=len % pageSize==0 ? len/pageSize : Math.floor(len/pageSize)+1;//根据记录条数，计算页数
-		    	console.log(page);
+//		    	console.log(page);
 		    	curPage=1; // 设置当前为第一页
-		    	displayPage();
+		    	displayPage(1);
 		    	
 		    	document.getElementById("btn0").innerHTML="当前 " + curPage + "/" + page + " 页    每页 ";    // 显示当前多少页
                 document.getElementById("sjzl").innerHTML="数据总量 " + len + "";        // 显示数据量
@@ -76,11 +76,11 @@ function paginate(){
 		    	function displayPage(){
 	                if(curPage <=1 && direct==-1){
 	                    direct=0;
-	                    alert("已经是第一页了");
+//	                    alert("已经是第一页了");
 	                    return;
 	                } else if (curPage >= page && direct==1) {
 	                    direct=0;
-	                    alert("已经是最后一页了");
+//	                    alert("已经是最后一页了");
 	                    return ;
 	                }
 	
@@ -105,6 +105,7 @@ function paginate(){
 	                $(".providerTable tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
 	                    if((i>=begin && i<=end) || i==0 )//显示begin<=x<=end的记录
 	                        $(this).show();
+//	                        console.log(i);
 	                });
 	             }
 		    	
