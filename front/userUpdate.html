@@ -13,7 +13,7 @@
     <h1>十七墙体材料管理系统</h1>
 
     <div class="publicHeaderR">
-        <p><span></span><span style="color: #fff21b"> Admin</span> , 欢迎你！</p>
+        <p><span></span><span style="color: #fff21b" class="in-login"> Admin</span> , 欢迎你！</p>
         <a href="login.html">退出</a>
     </div>
 </header>
@@ -27,13 +27,13 @@
     <div class="left">
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
-            <ul class="list">
+           <!-- <ul class="list">
                 <li><a href="billList.html">账单管理</a></li>
                 <li ><a href="providerList.html">供应商管理</a></li>
                 <li id="active"><a href="userList.html">用户管理</a></li>
                 <li><a href="password.html">密码修改</a></li>
                 <li><a href="login.html">退出系统</a></li>
-            </ul>
+            </ul>-->
         </nav>
     </div>
     <div class="right">
@@ -45,45 +45,46 @@
             <form action="#">
                 <!--div的class 为error是验证错误，ok是验证成功-->
                 <div>
+                    <label for="userName">用户id：</label>
+                    <input type="text" name="userId" id="userId" readonly="true"/>
+                    <!--<span >*</span>-->
+                </div>
+                <div>
                     <label for="userName">用户名称：</label>
-                    <input type="text" name="userName" id="userName" placeholder="韩露"/>
+                    <input type="text" name="userName" id="userName" readonly="true"/>
+                </div>
+
+                <div>
+                    <label >用户密码：</label>
+                    <input type="text" name="password" id="password"/>
                     <span >*</span>
                 </div>
-
-                <div>
-                    <label >用户性别：</label>
-
-                    <select name="">
-                        <option value="man">男</option>
-                        <option value="woman" selected>女</option>
-                    </select>
-                </div>
-                <div>
+                <!--<div>
                     <label for="data">出生日期：</label>
                     <input type="text" name="data" id="data" placeholder="2016年2月1日"/>
                     <span >*</span>
-                </div>
+                </div>-->
                 <div>
                     <label for="userphone">用户电话：</label>
-                    <input type="text" name="userphone" id="userphone" placeholder="13533667897"/>
+                    <input type="text" name="userphone" id="userphone"/>
                     <span >*</span>
                 </div>
-                <div>
+                <!--<div>
                     <label for="userAddress">用户地址：</label>
                     <input type="text" name="userAddress" id="userAddress" placeholder="北京"/>
-                </div>
+                </div>-->
                 <div>
                     <label >用户类别：</label>
-                    <input type="radio" name="userlei"/>管理员
+                    <!--<input type="radio" name="userlei" mold='manager'/>管理员
                     <input type="radio" name="userlei" checked/>经理
-                    <input type="radio" name="userlei"/>普通用户
-
+                    <input type="radio" name="userlei" mold='person'/>普通用户-->
+					<span class='userType'></span>
                 </div>
                 <div class="providerAddBtn">
                     <!--<a href="#">保存</a>-->
                     <!--<a href="userList.html">返回</a>-->
-                    <input type="button" value="保存" onclick="history.back(-1)"/>
-                    <input type="button" value="返回" onclick="history.back(-1)"/>
+                    <input type="button" value="保存" mold='save' />
+                    <input type="button" value="返回" mold='back' />
                 </div>
             </form>
         </div>
@@ -92,7 +93,11 @@
 </section>
 <footer class="footer">
 </footer>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/js.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/time.js"></script>
+<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/userUpdate.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

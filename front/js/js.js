@@ -87,6 +87,7 @@ $(function () {
 //	console.log(cookie);
 	$oA=$('.publicHeaderR .in-login');
 	$oH=$('.wFont h2');
+//	console.log(cookie);
 	if(cookie){
 		$oA.html("您好:"+cookie+"");
 		$oH.html(cookie);
@@ -97,3 +98,22 @@ $(function () {
 	}
 })();
 
+//拼接左侧选项卡
+(function(){
+	var oNav=$('.publicMian .left nav');
+	var html='';
+	html+=`<ul class="list">
+                <li><a href="billList.html">账单管理</a></li>
+                <li><a href="providerList.html">供应商管理</a></li>
+                <li><a href="userList.html">用户管理</a></li>
+                <li><a href="goodsList.html">商品管理</a></li>
+                <li><a href="login.html">退出系统</a></li>
+            </ul>`;
+    oNav.append(html);  
+//  console.log($('.publicMian .left nav li').length);
+	$('.publicMian .left nav li').click(function(){
+//		console.log($(this).index());
+		$('.publicMian .left nav li').removeAttr('id');
+		$(this).attr('id','active');
+	})
+})();

@@ -1,3 +1,4 @@
+//查看用户信息
 ;(function(){
 	$(document).ready(function display(){
 //  	var oTbody=$('.providerTable tbody');

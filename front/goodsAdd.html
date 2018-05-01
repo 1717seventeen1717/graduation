@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -39,12 +39,55 @@
     <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
-            <span>供应商管理页面 >> 供应商添加页面</span>
+            <span>商品管理页面 >> 商品添加页面</span>
         </div>
         <div class="providerAdd">
             <form action="#">
                 <!--div的class 为error是验证错误，ok是验证成功-->
                 <div class="">
+                    <label for="providerId">供应商编码：</label>
+                   <select name="providerId" id='providerId'>
+                   	<!--<option value="1">1</option>
+                   	<option value="1">1</option>
+                   	<option value="1">1</option>
+                   	<option value="1">1</option>-->
+                   </select>
+                </div>
+                <div>
+                    <label for="provide">供货物品：</label>
+                    <select name="provide" id='provide'>
+	                   	<!--<option value="1">1</option>
+	                   	<option value="1">1</option>
+	                   	<option value="1">1</option>
+	                   	<option value="1">1</option>-->
+                   </select>
+                </div>
+                <div>
+                    <label for="price">物品单价：</label>
+                    <input type="text" name="price" id="price"/>
+                    <span>*请输入物品单价</span>
+                </div>
+                <div>
+                    <label for="number">物品数量：</label>
+                    <input type="text" name="number" id="number"/>
+                    <span>*请输入物品数量</span>
+                </div>
+                <div>
+                    <label for="sum">物品总价：</label>
+                    <input type="text" name="sum" id="sum" readonly="true"/>
+                    <span></span>
+                </div>
+                <div>
+                    <label for="image">商品图片路径：</label>
+                    <input type="text" name="image" id="image" readonly="true"/>
+                    <input type="file" name="uploadPicture" id="file" value="" title="上传照片" style="border: none; box-shadow: none;"/> 
+                    <!--<span>*请上传图片路径</span>-->
+                </div>
+                 <div>
+                    <label for="desc">商品描述：</label>
+                    <input type="text" name="desc" id="desc"/>
+                </div>
+                <!--<div class="">
                     <label for="providerId">供应商编码：</label>
                     <input type="text" name="providerId" id="providerId"/>
                     <span>*请输入供应商编码</span>
@@ -79,7 +122,7 @@
                 <div>
                     <label for="describe">描述：</label>
                     <input type="text" name="describe" id="describe"/>
-                </div>
+                </div>-->
                 <div class="providerAddBtn">
                     <!--<a href="#">保存</a>-->
                     <!--<a href="providerList.html">返回</a>-->
@@ -98,7 +141,7 @@
 <script src="js/time.js"></script>
 <script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/paginate.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/providerAdd.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/goodsAdd.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

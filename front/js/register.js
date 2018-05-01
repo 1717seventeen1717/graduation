@@ -62,7 +62,7 @@
         }
     });
     $('#usernameIp').blur(function() {
-        $(this).parent().find('p').html("").css('display', 'none');;
+        $(this).parent().find('p').html("").css('display', 'none');
         var username = $(this).val();
         var exist=true;
         if (username != '') {

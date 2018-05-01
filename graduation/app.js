@@ -5,11 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 var cors = require('cors');
+var moment = require('moment');
 //连接数据库
 mongoose.connect('mongodb://localhost/graduationProject');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var providerRouter = require('./routes/providers');
+var imageRouter = require('./routes/images');
 
 var app = express();
 
@@ -27,6 +30,8 @@ app.use(cors()); //使用cors
 //对应了index页面 /users对应了user模块
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/providers', providerRouter);
+app.use('/images', imageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

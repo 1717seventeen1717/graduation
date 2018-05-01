@@ -38,11 +38,12 @@
 	var arr=[];
 	var $btn=$('.middle-figure button');
 	$.ajax({
-				url:'php/lunbo.php',
-				async:true,
-				dataType:'json'
+				type:"post",
+				url:"http://localhost:3000/images/listEverything",
+				async:true
 	}).done(function(data){
-					var arr=data.tab;
+//					console.log(data.docs);
+					var arr=data.docs;
 					var html='';
 //					console.log(arr);
 					$.each(arr, function(i){
@@ -59,12 +60,12 @@
 						$pindex=$index;//将当前的索引给前一个索引。
 					});
 					//左右按钮滑过效果
-					$btn.on('mouseover',function(){
-						$(this).addClass('hover');
-					});
-					$btn.on('mouseout',function(){
-						$(this).removeClass('hover');
-					});
+//					$btn.on('mouseover',function(){
+//						$(this).addClass('hover');
+//					});
+//					$btn.on('mouseout',function(){
+//						$(this).removeClass('hover');
+//					});
 					//左右按钮点击效果
 					$left.on('click',function(){
 						$index--;
