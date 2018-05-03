@@ -43,7 +43,11 @@
 				async:true
 	}).done(function(data){
 //					console.log(data.docs);
-					var arr=data.docs;
+					$.each(data.docs, function(i) {
+						if(data.docs[i].type==1){
+							arr.push(data.docs[i]);
+						}
+					});
 					var html='';
 //					console.log(arr);
 					$.each(arr, function(i){
@@ -127,20 +131,38 @@
 //	var $liA=$('.hide-image ul li a');
 //	console.log($liA.length);
 	$.ajax({
-		type:"get",
-		url:"php/lunbo.php",
+		type:"post",
+		url:"http://localhost:3000/images/listEverything",
 		async:true,
 		dataType:'json',
 	}).done(function(data){
-		var arr=data.tab2;
+		var arr=[];
+		var arr1=[];
+		var lastindex;
+//		console.log(data);
+		$.each(data.docs, function(i) {
+			
+			if(data.docs[i].type==2){
+				arr.push(data.docs[i]);
+//				console.log(data.docs[i]);
+			}
+		});
+//		console.log(arr);
 //		console.log(arr);
 		var html='';
 		$.each(arr, function(i){
-				html+=`<li><a href="javascript:;"><img src="${arr[i].url}"></a></li>`;
+//				console.log(arr[i].url);
+				arr1[i]=arr[i].url.replace(/\\/g,'/');
+				lastindex=find(arr1[i],'/',2);
+//				console.log(lastindex);
+				arr1[i]=arr[i].url.replace(/\\/g,'/').substr(lastindex+1);
+//				console.log(arr1[i]);
+				html+=`<li><a href="javascript:;"><img src="${arr1[i]}"></a></li>`;
 		});
 		$oUl.append(html);
 //		$imageul.append(html);
 	});
+	
 })();
 
 
@@ -315,7 +337,7 @@
 
 
 //头部广告
-(function(){
+/*(function(){
 	var $headeradv=$('.header-adv-bg');
 	var $icon=$('.header-adv-top i');
 	var $headeradvwrap=$('#header-adv');
@@ -333,7 +355,7 @@
 		$oA.css('background-image','url("'+$arr[0].url+'")');
 	})
 }
-)();
+)();*/
 
 
 
@@ -530,7 +552,7 @@
 //	})
 //})();
 
-
+//左侧二级导航
 (function(){
 	var $oUl=$('.container-left .left-menu');
 	var $oLi=$('.container-left .left-menu li');
@@ -616,30 +638,46 @@
 (function(){
 	var $oUl=$('.middle-lunbo .middle-lunbo-inner .ul-list');
 	$.ajax({
-		type:"get",
-		url:"php/lunbo.php",
+		type:"post",
+		url:"http://localhost:3000/images/listEverything",
 		async:true,
 		dataType:'json'
 	}).done(function(data){
-		var arr=data.tab5;
+		var arr=[];
+		var arr1=[];
+		var lastindex;
+//		console.log(data);
+		$.each(data.docs, function(i) {
+			if(data.docs[i].type==3){
+				arr.push(data.docs[i]);
+//				console.log(data.docs[i]);
+			}
+		});
+//		var arr=data.tab5;
 //		console.log(arr);
 		var html='';
 		$.each(arr, function(i) {
+			arr1[i]=arr[i].url.replace(/\\/g,'/');
+			lastindex=find(arr1[i],'/',2);
+//			console.log(lastindex);
+			arr1[i]=arr[i].url.replace(/\\/g,'/').substr(lastindex+1);
+//			console.log(arr1[i]);
+//			console.log(arr[i]);
 			html+=`
 <li class="li-items">
 	<a href="javascript:;">
 		<div class="true-image">
-			<img/>
+			<img src='${arr1[i]}'/>
 		</div>
-		<p class="message-title"></p>
+		<p class="message-title" style="color:#ccc">${arr[i].title}</p>
 		<div class="price">
 			<span class="new-price">
 				<i>￥</i>
-				<span></span>
+				<span>${arr[i].title2}</span>
 			</span>
 			<span class="orign-price">
 				<i>￥</i>
-				<span></span>
+				<span>${arr[i].title3}</span>
 			</span>
 		</div>
 	</a>
@@ -657,10 +695,10 @@
 //		console.log($('.middle-lunbo-inner').width());
 //		console.log($oImg.length);
 		$.each(arr, function(i) {
-			$oImg.eq(i).attr('src',arr[i].url);
-			$newPrice.eq(i).find('span').html(arr[i].title2);
-			$orignPrice.eq(i).find('span').html(arr[i].title3);
-//			$oLi.eq(i).addClass('addheight');
+//			$oImg.eq(i).attr('src',arr[i].url);
+//			$newPrice.eq(i).find('span').html(arr[i].title2);
+//			$orignPrice.eq(i).find('span').html(arr[i].title3);
+			$oLi.eq(i).addClass('addheight');
 			$oA.eq(i).hover(function(){
 				$oImg.eq(i).stop(true).animate({
 					opacity:0.5
@@ -891,3 +929,181 @@
 		})
 	});
 })();
+
+
+//购物车li拼接 以及加入购物车操作
+(function(){
+	var oUl=$('.ul-item-1');
+	var html='';
+	var sidarr=[];//存放sid的值
+	var numarr=[];//存放数量的值。
+	function getCookie(key){
+		var str=decodeURI(document.cookie);
+		var arr=str.split(';');
+		for(var i=0;i<arr.length;i++){
+			var arr1=arr[i].split('=');
+			if(arr1[0]==key){
+				return arr1[1];
+			}
+		}
+	}
+	function addCookie(key,value,day){
+		var date=new Date();//创建日期对象
+		date.setDate(date.getDate()+day);//过期时间：获取当前的日期+天数，设置给date
+		document.cookie=key+'='+encodeURI(value)+';expires='+date;//添加cookie，设置过期时间
+	}
+	function getcookievlaue(){
+		if(getCookie('cartsid')){
+			sidarr=getCookie('cartsid').split(',');
+		}
+		
+		if(getCookie('cartsid')){
+			numarr=getCookie('cartnum').split(',');
+		}
+	}
+	$.ajax({
+		type:"post",
+		url:"http://localhost:3000/goods/listEverything",
+		async:true
+	}).done(function(data){
+//		console.log(data.docs);
+		var arr=[];
+		var lastindex;
+		var html='';
+		$.each(data.docs, function(i) {
+//			console.log(data.docs[i].url);
+			arr[i]=data.docs[i].url.replace(/\\/g,'/');
+			lastindex=find(arr[i],'/',1);
+//			console.log(lastindex);
+			arr[i]='img/'+data.docs[i].url.replace(/\\/g,'/').substr(lastindex+1);
+//			console.log(arr[i]);
+			html+=`<li index="${i}"><a href="javascript:;"><img src="${arr[i]}"/></a>
+			<div class="bottom-title">
+				<p class="message-title" style="color:#ccc">${data.docs[i].desc}</p>
+				<div class="price">
+					<span class="new-price">
+						<i>￥</i>
+						<span>${data.docs[i].price*2.5}</span>
+					</span>
+					<span class="orign-price">
+						<i>￥</i>
+						<span>${data.docs[i].price*4.5}</span>
+					</span>
+				</div>
+			</div>
+			<div class="button-div"><input type="button" value="查看详情" name="detail" class="detail middle-button"><input type="button" value="加入购物车" name="addCart" class="addCart middle-button" index="${i}"></div>
+			</li>`;
+		});
+		oUl.append(html);
+	}).done(function(data){
+		console.log(data.docs);
+		var arr=[];
+		$.each(data.docs, function(i) {
+			arr[i]=data.docs[i].url.replace(/\\/g,'/');
+			lastindex=find(arr[i],'/',1);
+			arr[i]='img/'+data.docs[i].url.replace(/\\/g,'/').substr(lastindex+1);
+		});
+		var addCart=$('.ul-item-1 li .button-div .addCart');
+		var newPrice=$('.ul-item-1 .new-price span');
+		var userName=getCookie('UserName');
+//		console.log(userName);
+		console.log(addCart[0]);
+		addCart.click(function(){
+			var num=1;
+			var index=$(this).index('.ul-item-1 li .button-div .addCart');
+//			var sid = data.docs[index].provideCode;//当前按钮对应商品编号
+//			getcookievlaue();//sidarr:存在
+//			if($.inArray(sid,sidarr)!=-1){//存在
+//				//将原来的值加上我当前的值
+//				//parseInt(numarr[$.inArray(sid,sidarr)])：通过sid的位置，找到商品数量
+////				var num=parseInt(numarr[$.inArray(sid,sidarr)])+parseInt($('#count').val());
+////				numarr[$.inArray(sid,sidarr)]=num;//通过sid的位置，找num的位置
+////				addCookie('cartnum', numarr.toString(), 7);
+//				addCookie('cartnum', numarr.toString(), 7);
+//			}else{//不存在
+//				sidarr.push(sid);//将当前sid添加到数组里面。
+//				addCookie('cartsid',sidarr.toString(),7);
+////				numarr.push($('#count').val());
+//				numarr.push(1);
+//				addCookie('cartnum',numarr.toString(),7);
+			$.ajax({
+				type:"post",
+				url:"http://localhost:3000/checks/listbyuserandgoods",
+				async:true,
+				data:{
+					userName:$('.in-login').html().substr(3),
+					goods:data.docs[index].goods
+				}
+			}).done(function(data2){
+//				console.log(data.docs);
+//				var oSum=$('.new-price').eq(index).find('span').html();
+				var oSum=data.docs[index].price*2.5;
+//				console.log(oSum);
+				if(data2.docs.length>0){
+					window.open('cart.html');
+				}
+				else{
+					$.ajax({
+							type:"post",
+							url:"http://localhost:3000/checks/data",
+							async:true,
+							data:{
+								userName:$('.in-login').html().substr(3),
+								provideCode:data.docs[index].provideCode,
+								goods:data.docs[index].goods,
+								number:1,
+								price:data.docs[index].price,
+								sum:oSum,
+								status:'未付款',
+								desc:data.docs[index].desc,
+								url:arr[index]
+								
+							}
+					}).done(function(){
+						window.open('cart.html');
+					});
+					
+				}
+			});
+//			$.ajax({
+//							type:"post",
+//							url:"http://localhost:3000/checks/data",
+//							async:true,
+//							data:{
+//								userName:$('.in-login').html().substr(3),
+//								provideCode:data.docs[index].provideCode,
+//								goods:data.docs[index].goods,
+//								number:1,
+//								sum:data.docs[index].price*num,
+//								status:'未付款',
+//								desc:data.docs[index].desc,
+//							}
+//				});
+//			}
+			
+//			console.log(data.docs[index].provideCode);
+//			console.log(newPrice.eq(index).html());
+//			open('cart.html');
+		})
+//		$.each(addCart, function(i) {
+//			addCart.eq(i).click(function(){
+////				console.log(i);
+//				console.log(newPrice.eq(i).html());
+//			})
+//		});
+		
+//		console.log(addCart.length);
+	});
+	
+	
+})();
+
+
+//查询字符第几次出现的位置
+function find(str,cha,num){
+var x=str.indexOf(cha);
+for(var i=0;i<num;i++){
+    x=str.indexOf(cha,x+1);
+}
+return x;
+}

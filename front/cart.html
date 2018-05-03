@@ -585,6 +585,10 @@ i{cursor: default;}
 	display: block;	
 	width: 96px;
 	height: 52px;
+	color:white;
+	background-color: red;
+	line-height: 52px;
+	text-align: center;
 	/*background: url(../images/cart-submit-btn-new.png) no-repeat;*/
 	
 }
@@ -859,6 +863,7 @@ i{cursor: default;}
 
 <body>
     <!--main-->
+    <div class="usernametitle">你好</div>
     <div id="container" class="cart">
         <div class="w">
         	<!--购物车为空时显示的盒子-->
@@ -877,7 +882,7 @@ i{cursor: default;}
                     <span>配送至：</span>
                     <div class="jdarea">
                         <div class="areawrap">
-                            <div class="areatext">北京朝阳区三环到四环之间</div>
+                            <input type="text" class="areatext" value="诸暨市浣东街道85号"></input>
                             <b></b>
                         </div>
                     </div>
@@ -950,22 +955,22 @@ i{cursor: default;}
                                                             </div>
                                                             <div class="goods-msg">
                                                                 <div class="goods-d-info">
-                                                                    <a href="">Apple iMac 27英寸一体机（Core i5 处理器/8GB内存/1TB存储/2GB独显/Retina 5K屏 MK462CH/A）</a>
+                                                                    <a href="">17板材</a>
                                                                 </div>
                                                                 <div class="goods-ex">
                                                                     <span class="promise"></span>
                                                                     <span class="promise">
-																			<i></i><a href="">购买京东服务</a>
+																			<i></i><a href="">购买额外服务</a>
 																		</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="cell b-props">
-                                                        <div class="prop-text">尺码：27英寸Retina 5K 显示屏</div>
+                                                        <div class="prop-text">尺寸：100cm*100cm</div>
                                                     </div>
                                                     <div class="cell b-price">
-                                                        <strong>13488.00</strong>
+                                                        <strong>200.00</strong>
                                                         <a class="sales-promotion" href="">
 																促销优惠
 																<b></b>
@@ -982,7 +987,7 @@ i{cursor: default;}
                                                         <div class="quantity-text">有货</div>
                                                     </div>
                                                     <div class="cell b-sum">
-                                                        <strong>13488.00</strong>
+                                                        <strong>200.00</strong>
                                                     </div>
                                                     <div class="cell b-action">
                                                         <a href="javascript:void(0)">删除</a><a href="javascript:void(0)">移到我的关注</a>
@@ -1006,7 +1011,7 @@ i{cursor: default;}
                         </div>
                         <div class="toolbar-right">
                             <div class="btn-area">
-                                <a href=""></a>
+                                <a href="javascript:;" class="submitA">确认付款</a>
                             </div>
                             <div class="price-sum">
                                 <span class="txt">总价（不含运费）：</span>

@@ -53,6 +53,12 @@
                    	<option value="1">1</option>-->
                    </select>
                 </div>
+                
+                <div>
+                    <label for="providerName">供应商名称：</label>
+                    <input type="text" name="providerName" id="providerName" readonly="true"/>
+                </div>
+                
                 <div>
                     <label for="provide">供货物品：</label>
                     <select name="provide" id='provide'>
@@ -62,10 +68,20 @@
 	                   	<option value="1">1</option>-->
                    </select>
                 </div>
+                
+                <div style="display: none;">
+                    <label for="provideCode">供货物品编号：</label>
+                    <select name="provideCode" id='provideCode'>
+	                   	<!--<option value="1">1</option>
+	                   	<option value="1">1</option>
+	                   	<option value="1">1</option>
+	                   	<option value="1">1</option>-->
+                   </select>
+                </div>
+                
                 <div>
                     <label for="price">物品单价：</label>
-                    <input type="text" name="price" id="price"/>
-                    <span>*请输入物品单价</span>
+                    <input type="text" name="price" id="price" readonly="true"/>
                 </div>
                 <div>
                     <label for="number">物品数量：</label>

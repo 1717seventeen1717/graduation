@@ -24,6 +24,7 @@
 	var providerCode=$('#providerId');
 	var providerName=$('#providerName');
 	var provide=$('#provide');
+	var price=$('#price');
 	var linkman=$('#people');
 	var phoneNumber=$('#phone');
 	var fax=$('#fax');
@@ -56,11 +57,13 @@
 			data:{
 				providerCode:providerCode.val(),
 				providerName:providerName.val(),
+				provideCode:$('#provideCode').val(),
 				provide:provide.val(),
+				price:price.val(),
 				linkman:linkman.val(),
 				phoneNumber:phoneNumber.val(),
 				fax:fax.val(),
-				desc:desc.val()
+				desc:desc.val(),
 			}
 			}).done(function(){
 				document.location='providerList.html';

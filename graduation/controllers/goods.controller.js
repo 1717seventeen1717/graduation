@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Provider = require("../model/provider_moduel"); //数据模型
+var Goods = require("../model/goods_moduel"); //数据模型
 var moment = require("moment");
 
 //日期格式化
@@ -26,36 +26,36 @@ var moment = require("moment");
 
 
 
-//增加供应商
+//增加商品
 exports.create = function(req, res, next) {
-    var provider = new Provider(req.body); //实例化对象req.body代表post数据提交，并且参数从body中获取
-    console.log(provider);
+    var goods = new Goods(req.body); //实例化对象req.body代表post数据提交，并且参数从body中获取
+    console.log(goods);
     var reg = new RegExp(/([+][^/]+)$/);
     var dateTime = moment().format();
     dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
     console.log(dateTime);
-    provider.date = dateTime;
+    goods.date = dateTime;
     // console.log(provider);
-    provider.save().then(function(data) {
+    goods.save().then(function(data) {
         // console.log(data);
         res.json(data);
     });
 }
 
 //删除供应商
-exports.remove = function(req, res, next) {
-    //先找到一个id值
-    var id = req.params.id;
-    Provider.findByIdAndRemove(id, function(err, data) {
-        res.json({ message: '删除成功' });
-    });
-}
+// exports.remove = function(req, res, next) {
+//     //先找到一个id值
+//     var id = req.params.id;
+//     Provider.findByIdAndRemove(id, function(err, data) {
+//         res.json({ message: '删除成功' });
+//     });
+// }
 
-//修改供应商 req.params /:id
+// 修改商品 req.params /:id
 exports.update = function(req, res, next) {
     //先找到一个id值
     const id = req.params.id;
-    Provider.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
+    Goods.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
         res.json(data);
     });
 }
@@ -81,82 +81,59 @@ exports.update = function(req, res, next) {
 
 
 
-//查询所有数据
+// 查询所有数据
 exports.listEverything = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
     var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
-    Provider.paginate(queryCondition, {}, function(err, result) {
+    Goods.paginate(queryCondition, {}, function(err, result) {
         // console.log(result);
         res.json(result);
     });
 }
 
 
-//根据id查询供货商所有信息
-exports.listbyid = function(req, res, next) {
+// 根据商品编号查询供货商所有信息
+exports.listbyProvideCode = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
     var limit = req.body.limit ? req.body.limit : 3; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
-    if (req.body._id && req.body._id.trim().length > 0) {
+    if (req.body.provideCode && req.body.provideCode.trim().length > 0) {
         // console.log(req.body._id);
-        id = req.body._id;
+        provideCode = req.body.provideCode;
         //     console.log(username);
         queryCondition = {
-            _id: id
+            provideCode: provideCode
         };
         // console.log(queryCondition);
-        Provider.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+        Goods.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
             // console.log(result);
             res.json(result);
         });
     }
 }
+
 
 //根据供货商编号查询属于该供货商的所有物品
 
-exports.listbyProviderCode = function(req, res, next) {
-    var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
-    var queryCondition = {}; //查询条件里面写查询语句
-    // console.log(page, limit);
-    if (req.body.providerCode && req.body.providerCode.trim().length > 0) {
-        // console.log(req.body._id);
-        providerCode = req.body.providerCode;
-        //     console.log(username);
-        queryCondition = {
-            providerCode: providerCode
-        };
-        // console.log(queryCondition);
-        Provider.paginate(queryCondition, {}, function(err, result) {
-            // console.log(result);
-            res.json(result);
-        });
-    }
-}
-
-//根据物品名称查询属于该物品价格
-
-exports.listbyProvide = function(req, res, next) {
-    var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
-    var queryCondition = {}; //查询条件里面写查询语句
-    // console.log(page, limit);
-    console.log(1);
-    if (req.body.provide && req.body.provide.trim().length > 0) {
-        // console.log(req.body._id);
-        // console.log(req.body.providerName);
-        provide = req.body.provide;
-        //     console.log(username);
-        queryCondition = {
-            provide: provide
-        };
-        console.log(queryCondition);
-        Provider.paginate(queryCondition, {}, function(err, result) {
-            // console.log(result);
-            res.json(result);
-        });
-    }
-}
+// exports.listbyProviderCode = function(req, res, next) {
+//     var page = req.body.page ? req.body.page : 1;
+//     var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
+//     var queryCondition = {}; //查询条件里面写查询语句
+//     // console.log(page, limit);
+//     if (req.body.providerCode && req.body.providerCode.trim().length > 0) {
+//         // console.log(req.body._id);
+//         providerCode = req.body.providerCode;
+//         //     console.log(username);
+//         queryCondition = {
+//             providerCode: providerCode
+//         };
+//         // console.log(queryCondition);
+//         Provider.paginate(queryCondition, {}, function(err, result) {
+//             // console.log(result);
+//             res.json(result);
+//         });
+//     }
+// }

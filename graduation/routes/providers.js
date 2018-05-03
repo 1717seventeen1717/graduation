@@ -8,6 +8,7 @@ router.delete('/data/:id', dataCtrl.remove); //删除供货商
 router.post('/listEverything', dataCtrl.listEverything); //查询所有供货商数据
 router.post('/listbyid', dataCtrl.listbyid); //根据id查询供货商数据
 router.post('/listbyProviderCode', dataCtrl.listbyProviderCode); //根据id查询供货商数据
+router.post('/listbyProvide', dataCtrl.listbyProvide); //根据商品名称查询单价
 
 
 

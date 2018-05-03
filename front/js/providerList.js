@@ -37,6 +37,7 @@ function addTable(obj){
 					<td>${obj.docs[i].providerCode}</td>
 					<td class="tdUsername">${obj.docs[i].providerName}</td>
 					<td>${obj.docs[i].provide}</td>
+					<td>${obj.docs[i].price}</td>
 					<td>${obj.docs[i].linkman}</td>
 					<td>${obj.docs[i].phoneNumber}</td>
 					<td>${obj.docs[i].fax}</td>

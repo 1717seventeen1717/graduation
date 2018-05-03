@@ -151,27 +151,38 @@ function cookieToArray(){
 }
 
 //1.推荐商品的数据。
-$.ajax({
-	url: 'json/cart.json',//接口
-    dataType: 'json'//数据的类型
-}).done(function(data){//data:接口的返回的数据
-	var $html = '';
-    for (var i = 0; i < 4; i++) {
-        $html += '<li>' +
-            '<div class="goodsinfo">' +
-            '<div class="p-img">' +
-            '<a href="##"><img class="loadimg" src="' + data[i].img + '" alt="" sid="' + data[i].sid + '" /></a>' +
-            '</div>' +
-            '<div class="p-name">' +
-            '<a class="loadt" href="##">' + data[i].title + '</a>' +
-            '</div>' +
-            '<div class="p-price"><strong><em>￥</em><i class="loadpcp">' + data[i].price + '</i></strong></div>' +
-            '<div class="p-btn"><a href="javascript:void(0)"><b></b>加入购物车</a></div>' +
-            '</div>' +
-            '</li>';
-    }
-    $('.goods-list ul').html($html);//将数据追加到商品列表
-});
+//$.ajax({
+//	type:'post',
+//	url: 'http://localhost:3000/goods/listEverything',//接口
+//	async:true
+//}).done(function(data){//data:接口的返回的数据
+//	console.log(data.docs);
+//	var arr=[];
+//	var lastindex;
+//	var $html = '';
+//	$.each(data.docs, function(i) {
+//		arr[i]=data.docs[i].url.replace(/\\/g,'/');
+//		lastindex=find(arr[i],'/',1);
+////			console.log(lastindex);
+//		arr[i]='img/'+data.docs[i].url.replace(/\\/g,'/').substr(lastindex+1);
+//	});
+//	console.log(arr);
+//  for (var i = 0; i < 4; i++) {
+//      $html += '<li>' +
+//          '<div class="goodsinfo">' +
+//          '<div class="p-img">' +
+//          '<a href="#"><img class="loadimg" src="' + arr[i].url + '" alt="' + i + '" sid="' + data.docs[i]._id + '" /></a>' +
+//          '</div>' +
+//          '<div class="p-name">' +
+//          '<a class="loadt" href="##">' + data.docs[i].title + '</a>' +
+//          '</div>' +
+//          '<div class="p-price"><strong><em>￥</em><i class="loadpcp">' + data.docs[i].price + '</i></strong></div>' +
+//          '<div class="p-btn"><a href="javascript:void(0)"><b></b>加入购物车</a></div>' +
+//          '</div>' +
+//          '</li>';
+//  }
+//  $('.goods-list ul').html($html);//将数据追加到商品列表
+//});
 
 
 //购物车的思路
@@ -198,84 +209,130 @@ function getcookievalue(){
 
 //2.给加入购物车按钮添加对应的事件，判断当前的按钮对应的图片的sid是否存在于cookie里面
 //2.委托原理获取商品列表的添加购物车按钮
-$('.goods-list ul').on('click', '.p-btn a', function() {
-	var sid = $(this).parents('.goodsinfo').find('.loadimg').attr('sid');//当前按钮对应图片的sid
-	getcookievalue();//获取cookie值，放到对应的数组中
-	if ($.inArray(sid, sidarr) != -1) {//存在，数量加1
-		$('.goods-item:visible').each(function() {//遍历可视的商品列表
-            if (sid == $(this).find('img').attr('sid')) {//添加购物车按钮的索引和购物车中商品列表的索引一致
-                var $num = $(this).find('.quantity-form input').val();//获取数量的值
-                $num++;//数量累加
-                $(this).find('.quantity-form input').val($num);//将数量赋值回去
-                //计算价格
-                var $dj = parseFloat($(this).find('.b-price strong').html());//获取当前的单价
-                $(this).find('.b-sum strong').html(($dj * $num).toFixed(2));//计算商品总价
-
-                //存储数量到cookie里面。通过编号找数量
-                numarr[$.inArray(sid, sidarr)] = $num;//将数量存储到对应的cookie存放数量的数组中
-                addCookie('cartnum', numarr.toString(), 7);//添加购物车
-                totalprice();
-            }
-        });
-	}else{//当前商品列表没有进入购物车，创建商品列表
-		sidarr.push(sid);//将当前id添加到数组里面。
-        addCookie('cartsid', sidarr.toString(), 7);//将整个数组添加到cookie
-        numarr.push(1);//走这里数量都是1.
-        addCookie('cartnum', numarr.toString(), 7);
-        createcart(sid, 1);
-        totalprice();
-	}
-});
+//$('.goods-list ul').on('click', '.p-btn a', function() {
+//	var sid = $(this).parents('.goodsinfo').find('.loadimg').attr('sid');//当前按钮对应图片的sid
+//	getcookievalue();//获取cookie值，放到对应的数组中
+//	if ($.inArray(sid, sidarr) != -1) {//存在，数量加1
+//		$('.goods-item:visible').each(function() {//遍历可视的商品列表
+//          if (sid == $(this).find('img').attr('sid')) {//添加购物车按钮的索引和购物车中商品列表的索引一致
+//              var $num = $(this).find('.quantity-form input').val();//获取数量的值
+//              $num++;//数量累加
+//              $(this).find('.quantity-form input').val($num);//将数量赋值回去
+//              //计算价格
+//              var $dj = parseFloat($(this).find('.b-price strong').html());//获取当前的单价
+//              $(this).find('.b-sum strong').html(($dj * $num).toFixed(2));//计算商品总价
+//
+//              //存储数量到cookie里面。通过编号找数量
+//              numarr[$.inArray(sid, sidarr)] = $num;//将数量存储到对应的cookie存放数量的数组中
+//              addCookie('cartnum', numarr.toString(), 7);//添加购物车
+//              totalprice();
+//          }
+//      });
+//	}else{//当前商品列表没有进入购物车，创建商品列表
+//		sidarr.push(sid);//将当前id添加到数组里面。
+//      addCookie('cartsid', sidarr.toString(), 7);//将整个数组添加到cookie
+//      numarr.push(1);//走这里数量都是1.
+//      addCookie('cartnum', numarr.toString(), 7);
+//      createcart(sid, 1);
+//      totalprice();
+//	}
+//});
 
 
 
 //4.创建一个商品列表的函数
-function createcart(sid, num) {//sid：图片的编号  num:商品的数量
+//function createcart(sid, num) {//sid：图片的编号  num:商品的数量
+	function createcart(){
+//		console.log($('.usernametitle').html());
     $.ajax({
-        url: 'json/cart.json',
-        dataType: 'json'
+    	type:'post',
+    	url:'http://localhost:3000/checks/listbyuserandarrearage',
+    	async:true,
+    	data:{
+    		userName:$('.usernametitle').html()
+    	}
+//      url: 'json/cart.json',
+//      dataType: 'json'
     }).done(function(data) {
-        for (var i = 0; i < data.length; i++) {
-            if (sid == data[i].sid) {//图片的sid和数据里面的sid匹配
-                var $clone = $('.goods-item:hidden').clone(true);//对隐藏的模块进行克隆
+//  	商品列表不存在显示购物车为空
+//		console.log(data);
+		if (data.docs.length>0) {
+		        $('.empty-cart').hide();
+//		        console.log(data.docs);
+		    	var arr=[];
+				$.each(data.docs, function(i) {
+					arr[i]=data.docs[i].url.replace(/\\/g,'/');
+					lastindex=find(arr[i],'/',1);
+					arr[i]=data.docs[i].url.replace(/\\/g,'/').substr(lastindex+1);
+				});
+//		        console.log(arr);
+		        $.each(data.docs, function(i) {
+    		 	var $clone = $('.goods-item:hidden').clone(true);//对隐藏的模块进行克隆
+    		 	var html='';
+//              console.log($clone);
                 //都是赋值
-                $clone.find('.goods-pic').find('img').attr('src', data[i].img);
-                $clone.find('.goods-pic').find('img').attr('sid', data[i].sid);
-                $clone.find('.goods-d-info').find('a').html(data[i].title);
-                $clone.find('.b-price').find('strong').html(data[i].price);
-                $clone.find('.quantity-form').find('input').val(num);
+//              $clone.find('.goods-pic').find('img').attr('src', data[i].img);
+//              $clone.find('.goods-pic').find('img').attr('sid', data[i].sid);
+//              $clone.find('.goods-d-info').find('a').html(data[i].title);
+//              $clone.find('.b-price').find('strong').html(data[i].price);
+//              $clone.find('.quantity-form').find('input').val(num);
+				$clone.attr('checkid',data.docs[i]._id);
+				$clone.find('.goods-pic').find('img').attr('src', arr[i]);
+//              $clone.find('.goods-pic').find('img').attr('sid', data[i].sid);
+                $clone.find('.goods-d-info').find('a').html(data.docs[i].desc);
+                $clone.find('.prop-text').html(data.docs[i].desc);
+                $clone.find('.b-price').find('strong').html(data.docs[i].price);
+//              $clone.find('.quantity-form').find('input').val(num);
+                $clone.find('.quantity-form').find('input').val(data.docs[i].number);
+				$clone.find('.quantity-add').attr('checkid',data.docs[i]._id);
                 //计算价格
                 var $dj1 = parseFloat($clone.find('.b-price strong').html());
-                $clone.find('.b-sum strong').html(($dj1 * num).toFixed(2));
+//              $clone.find('.b-sum strong').html(($dj1 * num).toFixed(2));
+                $clone.find('.b-sum strong').html(($dj1 * data.docs[i].number).toFixed(2));
                 $clone.css('display', 'block');//克隆的模块是隐藏，显示出来。
                 $('.item-list').append($clone);//追加
-                kong()
+//              $('.item-list').append(html);
+//              kong()
                 totalprice();
-            }
-        }
+    	});
+		} else {
+		        $('.empty-cart').show();
+		}
+    	
+		
+    	
+       /* for (var i = 0; i < data.docs.length; i++) {
+//          if (sid == data.docs[i].provideCode) {//图片的sid和数据里面的sid匹配
+               
+//          }
+        }*/
     });
-}
+  }
+//}
+
 
 //5.页面加载检测购物车中是否有数据，有的话创建商品列表
-if (getCookie('cartsid') && getCookie('cartnum')) {
-    var s = getCookie('cartsid').split(',');//存放sid数组
-    var n = getCookie('cartnum').split(',');//存放数量数组
-    for (var i = 0; i < s.length; i++) {
-        createcart(s[i], n[i]);//遍历创建商品列表
-    }
-}
+//createcart();
+//if (getCookie('cartsid') && getCookie('cartnum')) {
+//  var s = getCookie('cartsid').split(',');//存放sid数组
+//  var n = getCookie('cartnum').split(',');//存放数量数组
+////  console.log(s,n);
+//  for (var i = 0; i < s.length; i++) {
+//      createcart(s[i], n[i]);//遍历创建商品列表
+//  }
+//}
 
 //6.商品列表不存在显示购物车为空
 
-kong()
+//kong();
 
-function kong() {
-    if (getCookie('cartsid')) {
-        $('.empty-cart').hide();
-    } else {
-        $('.empty-cart').show();
-    }
-}
+//function kong() {
+//  if (getCookie('cartsid')) {
+//      $('.empty-cart').hide();
+//  } else {
+//      $('.empty-cart').show();
+//  }
+//}
 
 
 
@@ -361,6 +418,7 @@ $('.operation a:first').on('click', function() {
 //10.修改数量的操作
 //改变商品数量++
 $('.quantity-add').on('click', function() {
+	var index=$(this).index('.quantity-add');
     var $count = $(this).parents('.goods-item').find('.quantity-form input').val();
     $count++;
     if ($count >= 99) {
@@ -369,13 +427,17 @@ $('.quantity-add').on('click', function() {
     $(this).parents('.goods-item').find('.quantity-form input').val($count);
     $(this).parents('.goods-item').find('.b-sum').find('strong').html(singlegoodsprice($(this)));//改变后的价格
     totalprice();
-    setcookie($(this));
-
+    putCheck($(this),index);
+//  setcookie($(this));
+	
 });
 
 
 //改变商品数量--
 $('.quantity-down').on('click', function() {
+	var index=$(this).index('.quantity-down');
+	var sid=$(this).attr('checkid');
+//	console.log($(this).attr('checkid'));
     var $count = $(this).parents('.goods-item').find('.quantity-form input').val();
     $count--;
     if ($count <= 1) {
@@ -384,12 +446,14 @@ $('.quantity-down').on('click', function() {
     $(this).parents('.goods-item').find('.quantity-form input').val($count);
     $(this).parents('.goods-item').find('.b-sum').find('strong').html(singlegoodsprice($(this)));//改变后的价格
     totalprice();
-    setcookie($(this));
+//  setcookie($(this));
+    putCheck($(this),index);
 });
 
 
 //直接输入改变数量
 $('.quantity-form input').on('input', function() {
+	var index=$(this).index('.quantity-form');
     var $reg = /^\d+$/g; //只能输入数字
     var $value = parseInt($(this).val());
     if ($reg.test($value)) {
@@ -405,10 +469,27 @@ $('.quantity-form input').on('input', function() {
     }
     $(this).parents('.goods-item').find('.b-sum').find('strong').html(singlegoodsprice($(this)));//改变后的价格
     totalprice();
-    setcookie($(this));
+//  setcookie($(this));
+	putCheck($(this),index);
 });
 
-
+//点击确认付款 修改选中商品的状态为已付款
+$('.submitA').click(function(){
+	$('.goods-item:visible').each(function() {//显示出来的
+        if ($(this).find('input:checkbox').is(':checked')) {//复选框是选中的
+            $.ajax({
+            	type:"put",
+            	url:"http://localhost:3000/checks/data/"+$(this).attr('checkid'),
+            	async:true,
+            	data:{
+            		status:'已付款'
+            	}
+            }).done(function(data){
+            	console.log(data);
+            });
+        }
+    });
+})
 
 //11.计算单个商品的价格
 function singlegoodsprice(row) { //row:当前元素
@@ -425,3 +506,57 @@ function setcookie(obj) { //obj:当前操作的对象
     numarr[sidarr.indexOf($index)] = obj.parents('.goods-item').find('.quantity-form input').val();
     addCookie('cartnum', numarr.toString(), 7);
 }
+
+
+//查询字符第几次出现的位置
+function find(str,cha,num){
+var x=str.indexOf(cha);
+for(var i=0;i<num;i++){
+    x=str.indexOf(cha,x+1);
+}
+return x;
+}
+
+//修改订单数据
+function putCheck(){
+//	$.ajax({
+//		type:"put",
+//		url:"",
+//		async:true
+//	});
+}
+
+//点击修改当前id的订单
+function putCheck(obj,index){
+//	var index=obj.index('.quantity-add');
+//	console.log(index);
+	var sid=$('.goods-item').eq(index).attr('checkid');
+//	var sid=$(this).parent('.goods-item').attr('checkid');
+//	console.log(sid);
+//	console.log($(this).attr('checkid'));
+//	console.log(obj.parents('.goods-item').find('.b-sum strong').html());
+	console.log($('.areatext').val());
+//	console.log(obj.parents('.goods-item').find('.quantity-form input').val());
+	$.ajax({
+    	type:"put",
+    	url:"http://localhost:3000/checks/data/"+sid,
+    	async:true,
+    	data:{
+    		number:obj.parents('.goods-item').find('.quantity-form input').val(),
+    		sum:obj.parents('.goods-item').find('.b-sum strong').html(),
+    		area:$('.areatext').val()
+    	}
+    }).done(function(data){
+    	
+//  	console.log(data);
+//  	console.log(data.docs);
+    });
+}
+
+;(function(){
+	var oDiv=$('.usernametitle');
+	var title=getCookie('UserName');
+	oDiv.html(title);
+	//5.页面加载检测购物车中是否有数据，有的话创建商品列表
+	createcart();
+})();

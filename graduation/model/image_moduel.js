@@ -4,7 +4,9 @@ var mongoosePaginate = require('mongoose-paginate');
 var ImageSchema = new mongoose.Schema({
     type: String,
     url: String,
-    title: String
+    title: String,
+    title2: String,
+    title3: String,
 });
 
 ImageSchema.plugin(mongoosePaginate);

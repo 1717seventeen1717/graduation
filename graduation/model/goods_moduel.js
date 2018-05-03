@@ -3,6 +3,8 @@ var mongoosePaginate = require('mongoose-paginate');
 
 var GoodsSchema = new mongoose.Schema({
     providerCode: String,
+    providerName: String,
+    provideCode: String,
     goods: String,
     price: String,
     number: String,

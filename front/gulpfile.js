@@ -34,12 +34,12 @@ gulp.task('connect',function(){//新建一个任务
 });
 
 gulp.task('html',function(){
-	gulp.src(['login.html','css/*.css','js/others.js'])//引入的文件路径
+	gulp.src(['index.html','css/*.css','js/others.js'])//引入的文件路径
 	.pipe(connect.reload());//自动刷新的方法
 });
 
 gulp.task('watch',function(){//监听
-	gulp.watch(['login.html','css/*.css','js/others.js'],['html']);
+	gulp.watch(['index.html','css/*.css','js/others.js'],['html']);
 });
 
 gulp.task('runsass',function(){

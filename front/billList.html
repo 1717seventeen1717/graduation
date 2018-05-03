@@ -6,13 +6,28 @@
     <link rel="stylesheet" href="css/public.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link type="favicon" rel="shortcut icon" href="img/favicon.ico" />
+    <style type="text/css">
+    	.fahuo{
+    	 	margin-left: 20px;
+		    width: 100px;
+		    padding: 0 20px;
+		    height: 30px;
+		    border: 1px solid #7ba92c;
+		    border-radius: 4px;
+		    color: #fff;
+		    font-weight: bold;
+		    /*background:#87c212 url("../img/search.png") 10px center no-repeat;*/
+		    cursor: pointer;
+    		background: linear-gradient(to bottom,#baf076,#a2d866,#9cd055,#8dc838,#8bc93a);;
+    	}
+    </style>
 </head>
 <body>
 <!--头部-->
     <header class="publicHeader">
         <h1>十七墙体材料管理系统</h1>
         <div class="publicHeaderR">
-            <p><span></span><span style="color: #fff21b"> Admin</span> , 欢迎你！</p>
+            <p><span></span><span style="color: #fff21b" class="in-login"> Admin</span> , 欢迎你！</p>
             <a href="login.html">退出</a>
         </div>
     </header>
@@ -43,13 +58,6 @@
             <div class="search">
                 <span>商品名称：</span>
                 <input type="text" placeholder="请输入商品的名称"/>
-                
-                <span>供应商：</span>
-                <select name="tigong" >
-                    <option value="">--请选择--</option>
-                    <option value="">北京市粮油总公司</option>
-                    <option value="">邯郸市五得利面粉厂</option>
-                </select>
 
                 <span>是否付款：</span>
                 <select name="fukuan">
@@ -61,18 +69,33 @@
                 <input type="button" value="查询"/>
                 <a href="billAdd.html">添加订单</a>
             </div>
+            
+            <a id="btn0"></a>
+			<input id="pageSize" type="text" size="1" maxlength="2" value="getDefaultValue()"/><a> 条 </a> <a href="#" id="pageSizeSet">设置</a> 
+			<a id="sjzl"></a> 
+			<a  href="javascripr:;" id="btn1">首页</a>
+			<a  href="javascripr:;" id="btn2">上一页</a>
+			<a  href="javascripr:;" id="btn3">下一页</a>
+			<a  href="javascripr:;" id="btn4">尾页</a> 
+			<a>转到 </a>
+			<input id="changePage" type="text" size="1" maxlength="4"/>
+			<a>页 </a>
+		<a  href="javascripr:;" id="btn5">跳转</a>
+            
             <!--账单表格 样式和供应商公用-->
             <table class="providerTable" cellpadding="0" cellspacing="0">
                 <tr class="firstTr">
                     <th width="10%">账单编码</th>
-                    <th width="20%">商品名称</th>
-                    <th width="10%">供应商</th>
-                    <th width="10%">账单金额</th>
-                    <th width="10%">是否付款</th>
+                    <th width="10%">用户名</th>
+                    <th width="10%">商品名称</th>
+                    <th width="10%">商品数量</th>
+                    <th width="10%">当前商品总金额</th>
+                    <th width="10%">地址</th>
+                    <th width="10%">商品情况</th>
                     <th width="10%">创建时间</th>
-                    <th width="30%">操作</th>
+                    <th width="20%">操作</th>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>213</td>
                     <td>123</td>
                     <td>北京市粮油总公司</td>
@@ -97,7 +120,7 @@
                         <a href="providerUpdate.html"><img src="img/xiugai.png" alt="修改" title="修改"/></a>
                         <a href="#" class="removeBill"><img src="img/schu.png" alt="删除" title="删除"/></a>
                     </td>
-                </tr>
+                </tr>-->
             </table>
         </div>
     </section>
@@ -121,6 +144,9 @@
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/js.js"></script>
 <script src="js/time.js"></script>
+<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/paginate.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/billList.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

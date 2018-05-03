@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>十七墙体材料管理系统</title>
+		<link rel="stylesheet" href="css/public.css"/>
+	    <link rel="stylesheet" href="css/style.css"/>
+	    <link type="favicon" rel="shortcut icon" href="img/favicon.ico" />
+	    <style type="text/css">
+	    	body{
+	    		background: #fff;
+	    	}
+	    	.buy,.confirm{
+    	 	margin-left: 20px;
+		    width: 100px;
+		    padding: 0 20px;
+		    height: 30px;
+		    border: 1px solid #7ba92c;
+		    border-radius: 4px;
+		    color: #fff;
+		    font-weight: bold;
+		    /*background:#87c212 url("../img/search.png") 10px center no-repeat;*/
+		    cursor: pointer;
+    		background: linear-gradient(to bottom,#baf076,#a2d866,#9cd055,#8dc838,#8bc93a);;
+    	}
+	    </style>
+	</head>
+	<body>
+		 <a id="btn0"></a>
+			<input id="pageSize" type="text" size="1" maxlength="2" value="getDefaultValue()"/><a> 条 </a> <a href="#" id="pageSizeSet">设置</a> 
+			<a id="sjzl"></a> 
+			<a  href="javascripr:;" id="btn1">首页</a>
+			<a  href="javascripr:;" id="btn2">上一页</a>
+			<a  href="javascripr:;" id="btn3">下一页</a>
+			<a  href="javascripr:;" id="btn4">尾页</a> 
+			<a>转到 </a>
+			<input id="changePage" type="text" size="1" maxlength="4"/>
+			<a>页 </a>
+		<a  href="javascripr:;" id="btn5">跳转</a>
+		<table class="providerTable" cellpadding="0" cellspacing="0">
+                <tr class="firstTr">
+                    <th width="10%">账单编码</th>
+                    <th width="10%">用户名</th>
+                    <th width="10%">商品名称</th>
+                    <th width="10%">商品数量</th>
+                    <th width="10%">当前商品总金额</th>
+                    <th width="10%">地址</th>
+                    <th width="10%">商品情况</th>
+                    <th width="10%">创建时间</th>
+                    <th width="20%">操作</th>
+                </tr>
+        </table>
+	</body> 
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/js.js"></script>
+	<!--<script src="js/time.js"></script>-->
+	<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/paginate.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mycheck.js" type="text/javascript" charset="utf-8"></script>
+</html>

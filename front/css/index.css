@@ -1787,11 +1787,74 @@ body {
     float: left;
     position: relative;
     height: 450px;
-    padding: 0 5px 30px 0;
-    background: #fff; }
+    padding: 0 15px 30px 0;
+    background: #fff;
+    margin-bottom: 10px; }
   .middle-bottom-iamge .ul-item-1 img {
-    height: 450px;
-    margin: auto;
+    height: 250px;
     position: absolute;
     top: 20px;
     left: 5px; }
+  .middle-bottom-iamge .ul-item-1 input[type='button'] {
+    width: 100px;
+    margin-right: 10px;
+    height: 30px;
+    border: 1px solid #7ba92c;
+    border-radius: 4px;
+    color: #0081C2;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center; }
+  .middle-bottom-iamge .ul-item-1 .button-div {
+    position: absolute;
+    top: 400px;
+    left: 85px; }
+  .middle-bottom-iamge .ul-item-1 .bottom-title {
+    position: absolute;
+    top: 300px;
+    left: 100px; }
+    .middle-bottom-iamge .ul-item-1 .bottom-title .message-title {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 160px;
+      padding: 0 15px;
+      line-height: 30px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: center;
+      overflow: hidden; }
+    .middle-bottom-iamge .ul-item-1 .bottom-title .price {
+      position: absolute;
+      top: 30px;
+      width: 160px;
+      height: 30px;
+      padding: 1px;
+      background: #e6382f;
+      line-height: 20px; }
+    .middle-bottom-iamge .ul-item-1 .bottom-title .new-price {
+      float: left;
+      width: 80px;
+      height: 30px;
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 30px; }
+    .middle-bottom-iamge .ul-item-1 .bottom-title .orign-price {
+      float: left;
+      width: 80px;
+      height: 30px;
+      background: #fff;
+      text-align: center;
+      color: #b7bcb8;
+      font-size: 12px;
+      text-decoration: line-through;
+      line-height: 30px; }
+    .middle-bottom-iamge .ul-item-1 .bottom-title i {
+      margin-right: -3px;
+      font-family: arial;
+      font-weight: 400;
+      font-size: 12px; }
+  .middle-bottom-iamge .ul-item-1 .detail {
+    float: left; }
