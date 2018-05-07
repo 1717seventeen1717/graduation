@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 
-var GoodsSchema = new mongoose.Schema({
+var PurchaseSchema = new mongoose.Schema({
     providerCode: String,
     providerName: String,
     provideCode: String,
     goods: String,
     price: String,
     number: String,
-    stock: String,
-    url: String,
     desc: String,
-    date: String
+    date: String,
+    status: String
 });
 
-GoodsSchema.plugin(mongoosePaginate);
+PurchaseSchema.plugin(mongoosePaginate);
 
-var Goods = mongoose.model('Goods', GoodsSchema);
+var Purchase = mongoose.model('Purchase', PurchaseSchema);
 
-module.exports = Goods;
+module.exports = Purchase;

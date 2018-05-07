@@ -52,13 +52,16 @@
 					var $username=$user.val();
 					var $password=$pwd.val();
 					var $type;
-					if($Manager.attr('checked')||$Person.attr('checked')){
+					if($Manager.attr('checked')||$Person.attr('checked')||$('#Worker').attr('checked')){
 						bstopmanager=false;
 						if($Manager.attr('checked')){
 							$type='管理员';
 						}
 						else if($Person.attr('checked')){
 							$type='普通用户';
+						}
+						else if($('#Worker').attr('checked')){
+							$type='工人'
 						}
 					}
 					else{
@@ -97,16 +100,26 @@
 								}else{//成功时，将用户名给cookie
 									$('#warning').hide();
 //									$('#submit').attr('type','submit');
-									addCookie('UserName',$username,7);
-									if($type=='管理员'){
+									
+									if(data.docs[0].type=='管理员'){
+										addCookie('UserNameManager',$username,7);
+										console.log($type);
 										if($Manager.attr('checked')){
+//											addCookie('UserNamePerson',$username,7);
 											location.href='indexmanager.html';//跳转到管理首页
 										}
 										else if($Person.attr('checked')){
+											addCookie('UserNamePerson',$username,7);
 											location.href='index.html';
 										}
+
+									}
+									else if($type=='工人'){
+										addCookie('UserNameWorker',$username,7);
+										location.href='sendList.html';
 									}
 									else if($type=='普通用户'){
+										addCookie('UserNamePerson',$username,7);
 										location.href='index.html';//跳转到首页
 									}
 	//								location.href='index.html';//跳转到首页

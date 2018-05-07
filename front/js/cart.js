@@ -453,9 +453,11 @@ $('.quantity-down').on('click', function() {
 
 //直接输入改变数量
 $('.quantity-form input').on('input', function() {
-	var index=$(this).index('.quantity-form');
+	var index=$(this).index('.quantity-form input');
     var $reg = /^\d+$/g; //只能输入数字
     var $value = parseInt($(this).val());
+//  console.log($('.quantity-form input').length);
+	console.log(index);
     if ($reg.test($value)) {
         if ($value >= 99) {//限定范围
             $(this).val(99);
@@ -475,20 +477,30 @@ $('.quantity-form input').on('input', function() {
 
 //点击确认付款 修改选中商品的状态为已付款
 $('.submitA').click(function(){
-	$('.goods-item:visible').each(function() {//显示出来的
-        if ($(this).find('input:checkbox').is(':checked')) {//复选框是选中的
-            $.ajax({
-            	type:"put",
-            	url:"http://localhost:3000/checks/data/"+$(this).attr('checkid'),
-            	async:true,
-            	data:{
-            		status:'已付款'
-            	}
-            }).done(function(data){
-            	console.log(data);
-            });
-        }
-    });
+	var check=confirm('你确定付款吗？');
+	if(check){
+		$('.goods-item:visible').each(function() {//显示出来的
+	        if ($(this).find('input:checkbox').is(':checked')) {//复选框是选中的
+	            $.ajax({
+	            	type:"put",
+	            	url:"http://localhost:3000/checks/data/"+$(this).attr('checkid'),
+	            	async:true,
+	            	data:{
+	            		status:'已付款',
+	            		area:$('.areatext').val()
+	            	}
+	            }).done(function(data){
+	            	window.open('mycheck.html');
+	            });
+	        }
+	    });
+	}
+	
+})
+
+//修改地址框修改订单
+$('.areatext').on('input',function(){
+	putarea();
 })
 
 //11.计算单个商品的价格
@@ -518,13 +530,6 @@ return x;
 }
 
 //修改订单数据
-function putCheck(){
-//	$.ajax({
-//		type:"put",
-//		url:"",
-//		async:true
-//	});
-}
 
 //点击修改当前id的订单
 function putCheck(obj,index){
@@ -535,7 +540,7 @@ function putCheck(obj,index){
 //	console.log(sid);
 //	console.log($(this).attr('checkid'));
 //	console.log(obj.parents('.goods-item').find('.b-sum strong').html());
-	console.log($('.areatext').val());
+	var sarea=$('.areatext').val();
 //	console.log(obj.parents('.goods-item').find('.quantity-form input').val());
 	$.ajax({
     	type:"put",
@@ -544,19 +549,55 @@ function putCheck(obj,index){
     	data:{
     		number:obj.parents('.goods-item').find('.quantity-form input').val(),
     		sum:obj.parents('.goods-item').find('.b-sum strong').html(),
-    		area:$('.areatext').val()
+    		area:sarea
     	}
-    }).done(function(data){
-    	
+   }).done(function(data){
+   		
 //  	console.log(data);
-//  	console.log(data.docs);
+//  	console.log(data._id);
     });
 }
 
 ;(function(){
 	var oDiv=$('.usernametitle');
-	var title=getCookie('UserName');
+	var title=getCookie('UserNamePerson');
 	oDiv.html(title);
 	//5.页面加载检测购物车中是否有数据，有的话创建商品列表
 	createcart();
+	$.ajax({
+			type:"post",
+			url:"http://localhost:3000/users/listbyusername",
+			async:true,
+			data:{
+				username:getCookie('UserNamePerson')
+			}
+	}).done(function(data){
+//		console.log(data.docs[0].area);
+		$('.areatext').val(data.docs[0].area);
+	});
 })();
+
+//修改地址时修改订单
+function putarea(){
+	var length=$('.goods-item').length;
+	var sid=[]
+	for(var i=1;i<length;i++){
+		sid.push($('.goods-item').eq(i).attr('checkid'));
+	}
+//	console.log(sid);
+	var sarea=$('.areatext').val();
+
+	$.each(sid, function(i) {
+		console.log(i);
+		$.ajax({
+	    	type:"put",
+	    	url:"http://localhost:3000/checks/data/"+sid[i],
+	    	async:true,
+	    	data:{
+	    		area:sarea
+	    	}
+	   }).done(function(data){
+//	   	console.log(data);
+	   })
+	});
+}

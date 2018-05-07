@@ -31,7 +31,7 @@ exports.update = function(req, res, next) {
 //查询用户
 exports.list = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 3; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     if (req.body.username && req.body.username.trim().length > 0) {
@@ -51,7 +51,7 @@ exports.list = function(req, res, next) {
 //模糊查询用户
 exports.listUserVague = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 10; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     // console.log(req.body.textValue);
@@ -76,7 +76,7 @@ exports.listUserVague = function(req, res, next) {
 //查询所有数据
 exports.listEverything = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
@@ -89,7 +89,7 @@ exports.listEverything = function(req, res, next) {
 //查询用户名和密码以及用户类型
 exports.listsomthing = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 3; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     if (req.body.username && req.body.username.trim().length > 0 && req.body.password && req.body.password.trim().length > 0) {
@@ -112,7 +112,7 @@ exports.listsomthing = function(req, res, next) {
 //根据id查询用户所有信息
 exports.listbyid = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 3; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     if (req.body._id && req.body._id.trim().length > 0) {
@@ -121,6 +121,27 @@ exports.listbyid = function(req, res, next) {
         //     console.log(username);
         queryCondition = {
             _id: id
+        };
+        // console.log(queryCondition);
+        User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+            // console.log(result);
+            res.json(result);
+        });
+    }
+}
+
+//根据用户名查询用户所有信息
+exports.listbyusername = function(req, res, next) {
+    var page = req.body.page ? req.body.page : 1;
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
+    var queryCondition = {}; //查询条件里面写查询语句
+    // console.log(page, limit);
+    if (req.body.username && req.body.username.trim().length > 0) {
+        // console.log(req.body._id);
+        username = req.body.username;
+        console.log(username);
+        queryCondition = {
+            username: username
         };
         // console.log(queryCondition);
         User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {

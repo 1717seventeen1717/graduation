@@ -6,12 +6,30 @@
 		}
 //得到cookie
 		function getCookie(key){
+//			var str=decodeURI(document.cookie);
+//			var arr=str.split('; ');
+//			for(var i=0;i<arr.length;i++){
+//				var arr1=arr[i].split('=');
+// 				if(arr1[0]==key){
+//					return arr1[1];
+//				}
+//			}
 			var str=decodeURI(document.cookie);
-			var arr=str.split('; ');
+//			console.log(str);
+			var arr=str.split(';');
+			var arr1=[];
+			var arr2=[];
+//			console.log(arr);
 			for(var i=0;i<arr.length;i++){
-				var arr1=arr[i].split('=');
- 				if(arr1[0]==key){
-					return arr1[1];
+				var s=arr[i].split('=');
+				arr1.push(s[0].replace(/\s/g, ""));
+				arr2.push(s[1].replace(/\s/g, ""));
+			}
+			for(var i=0;i<arr1.length;i++){
+//				console.log(arr1);
+				if(arr1[i]==key){
+//					console.log(arr1[i]);
+					return arr2[i];
 				}
 			}
 		}

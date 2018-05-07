@@ -16,10 +16,10 @@
     var $oManager = $('#manager');
     $oA.on('click', function() {
         $oManager.toggle();
-        if ($oA.html() == '注册成为管理员或者管理员') {
+        if ($oA.html() == '申请成为管理员') {
             $oA.html('手机验证');
         } else {
-            $oA.html('注册成为管理员或者管理员');
+            $oA.html('申请成为管理员');
             $('#managerIp').val('');
         }
     })
@@ -47,76 +47,33 @@
 })();
 //验证
 (function() {
-    var bstopuser = true; //用户名不通过
+//  var bstopuser = true; //用户名不通过
     var bstoppassword1 = true; //密码不通过
     var bstoppassword2 = true; //重复密码不通过
-    var bstoptel = true; //手机号不通过
+    var bstoptel = false; //手机号不通过
     var bstopmanagerKey=true; //管理员口令不通过
-    var bstopworkerKey=true;//工人口令不通过
-    var bstoparea=true;//地区不通过
-    //验证用户名		
-    var usereg = /^([\u4e00-\u9fa5]|[a-zA-Z0-9\_\-]){4,20}$/;
-    $('#usernameIp').focus(function() {
-        if (bstopuser && $(this).val() == '') {
-            $(this).parent().find('p').html(`<em></em>支持中文、字母、数字、'_'、'-'的组合 4-20个字符`).css('display', 'block');
-        } else if (bstopuser) {
-            $('#username').css('border', '1px solid red');
-        }
-    });
-    $('#usernameIp').blur(function() {
-        $(this).parent().find('p').html("").css('display', 'none');
-        var username = $(this).val();
-        var exist=true;
-        if (username != '') {
-            if (usereg.test(username)) {
-                $.ajax({
-                    type: 'post',
-                    url: 'http://localhost:3000/users/list',
-                    data: { //注册的用户名传给后端
-                        username: username
-                    }
-                    
-                }).done(function(data) {
-//              	console.log(data);
-//              	console.log(data.docs.length);
-                	$.each(data.docs, function(i) {
-                		if(data.docs[i].username==username){
-                			exist=false;
-                		}
-                	});
-//              	console.log(data.docs.username);
-//					console.log(data);
-                    if (exist) {
-                        $('#usernameIp').parent().find('.i-status').css('display', 'block');
-                        $('#username').css('border', '1px solid #ccc');
-                        bstopuser = false;
-                    } else {
-                        $('#username').css('border', '1px solid red');
-                        $('#usernameIp').parent().find('p').html(`<em></em>该用户名已存在`).css('display', 'block');
-                        $('#usernameIp').parent().find('.i-status').css('display', 'none');
-                        bstopuser = true;
-                    }
-                });
-            } else {
-                $('#username').css('border', '1px solid red');
-                $('#usernameIp').parent().find('p').html(`<em></em>格式不正确`).css('display', 'block');
-                $('#usernameIp').parent().find('.i-status').css('display', 'none');
-                bstopuser = true;
-            }
-        } else {
-            $('#username').css('border', '1px solid red');
-            $('#usernameIp').parent().find('p').html(`<em></em>用户名不能为空`).css('display', 'block');
-            $('#usernameIp').parent().find('.i-status').css('display', 'none');
-            bstopuser = true;
-        }
-        if (bstopuser) {
-            $('#usernameIp').parent().find('p').css('color', 'red');
-            $('#usernameIp').parent().find('em').css('background-position', '-17px -100px');
-        } else {
-            $('#username').css('border', '1px solid #ccc');
-        }
-    });
-
+    var bstoparea=false;//地区不通过
+   	
+	var oUser=$('#usernameIp');
+	var oTel=$('#telIp');
+	var username=getCookie('UserName');
+	var oArea=$('#areaIp');
+	var sid;
+	oUser.val(username);
+	$.ajax({
+			type:"post",
+			url:"http://localhost:3000/users/listbyusername",
+			async:false,
+			data:{
+				username:getCookie('UserName')
+			}
+	}).done(function(data){
+			oTel.val(data.docs[0].phoneNumber);
+			console.log(data.docs[0].area);
+			oArea.val(data.docs[0].area);
+			sid=data.docs[0]._id;
+	})
+	console.log(sid);
     //密码动态验证
     $('#password1Ip').focus(function() {
         if (bstoppassword1) {
@@ -286,21 +243,12 @@
 					$(this).parent().find('p').eq(0).html(`<em></em>管理员口令不正确`).css('display', 'block');
                     bstopmanagerKey = true;
 				}
-				if(this.value=='worker'){
-					bstopworkerKey = false;
-                    $('#managerIp').parent().find('.i-status').css('display', 'block');
-                    $(this).parent().find('p').eq(0).css('display', 'none');
-				}
-				else{
-					$(this).parent().find('p').eq(0).html(`<em></em>工人口令不正确`).css('display', 'block');
-                    bstopworkerKey = true;
-				}
             } else {
                 $('#managerIp').parent().find('p').eq(0).html(`<em></em>口令不能为空`).css('display', 'block');
                 $('#manager .warning-title').value='';
                 bstopmanagerKey = true;
             }
-            if (bstopmanagerKey&&bstopworkerKey) {
+            if (bstopmanagerKey) {
                 $('#managerIp').parent().find('.i-status').css('display', 'none');
                 $('#manager').css('border','1px solid red');
                 $('#managerIp').parent().find('p').css('color', 'red');
@@ -311,7 +259,6 @@
             	$('#managerIp').parent().find('p').css('color', '#ccc');
             	$('#managerIp').parent().find('.i-status').css('display', 'block');
             }
-            
         });
     
     
@@ -342,7 +289,7 @@
     //点击提交按钮
     $('.submit').on('click', function() {
     	console.log($('#area').val());
-        if (bstopuser || bstoppassword1 || bstoppassword2 || bstoptel || bstoparea) {
+        if (bstoppassword1 || bstoppassword2 || bstoptel || bstoparea) {
 //      	alert(1);
             return false; //阻止按钮跳转。
         }
@@ -350,8 +297,8 @@
         	if(!bstopmanagerKey){
         		
         		 $.ajax({
-                    type: 'post',
-                    url: 'http://localhost:3000/users/data',
+                    type: 'put',
+                    url: 'http://localhost:3000/users/data/'+sid,
                     data: { //注册的用户名传给后端
                         username:$('#usernameIp').val(),
                         password:$('#password1Ip').val(),
@@ -374,26 +321,11 @@
 //              });
         		window.location.href="login.html";
         	}
-        	else if(!bstopworkerKey){
-        		$.ajax({
-                    type: 'post',
-                    url: 'http://localhost:3000/users/data',
-                    data: { //注册的用户名传给后端
-                        username:$('#usernameIp').val(),
-                        password:$('#password1Ip').val(),
-                        phoneNumber:$('#telIp').val(),
-                        type: '工人',
-                        area:$('#areaIp').val()
-                    }
-                    
-                });
-                window.location.href="login.html";
-        	}
         	else
         	{
         		 $.ajax({
-                    type: 'post',
-                    url: 'http://localhost:3000/users/data',
+                    type: 'put',
+                    url: 'http://localhost:3000/users/data/'+sid,
                     data: { //注册的用户名传给后端
                         username:$('#usernameIp').val(),
                         password:$('#password1Ip').val(),
@@ -402,7 +334,7 @@
                         area:$('#areaIp').val()
                     }
                     
-                });
+                })
         		window.location.href="login.html";
         	}
         }

@@ -14,7 +14,13 @@ var usersRouter = require('./routes/users');
 var providerRouter = require('./routes/providers');
 var imageRouter = require('./routes/images');
 var goodsRouter = require('./routes/goods');
+var purchaseRouter = require('./routes/purchases');
+var deliveryRouter = require('./routes/deliverys');
+var rejectedRouter = require('./routes/rejecteds');
+var stocksRouter = require('./routes/stocks');
+var sendsRouter = require('./routes/sends');
 var checksRouter = require('./routes/checks');
+
 
 var app = express();
 
@@ -36,6 +42,11 @@ app.use('/providers', providerRouter);
 app.use('/images', imageRouter);
 app.use('/goods', goodsRouter);
 app.use('/checks', checksRouter);
+app.use('/purchases', purchaseRouter);
+app.use('/deliverys', deliveryRouter);
+app.use('/rejecteds', rejectedRouter);
+app.use('/stocks', stocksRouter);
+app.use('/sends', sendsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Goods = require("../model/goods_moduel"); //数据模型
+var Purchase = require("../model/purchase_moduel"); //数据模型
 var moment = require("moment");
 
 //日期格式化
@@ -28,34 +28,34 @@ var moment = require("moment");
 
 //增加商品
 exports.create = function(req, res, next) {
-    var goods = new Goods(req.body); //实例化对象req.body代表post数据提交，并且参数从body中获取
-    console.log(goods);
+    var purchase = new Purchase(req.body); //实例化对象req.body代表post数据提交，并且参数从body中获取
+    console.log(purchase);
     var reg = new RegExp(/([+][^/]+)$/);
     var dateTime = moment().format();
     dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
     console.log(dateTime);
-    goods.date = dateTime;
+    purchase.date = dateTime;
     // console.log(provider);
-    goods.save().then(function(data) {
+    purchase.save().then(function(data) {
         // console.log(data);
         res.json(data);
     });
 }
 
-//删除供应商
-// exports.remove = function(req, res, next) {
-//     //先找到一个id值
-//     var id = req.params.id;
-//     Provider.findByIdAndRemove(id, function(err, data) {
-//         res.json({ message: '删除成功' });
-//     });
-// }
+// 删除采购单
+exports.remove = function(req, res, next) {
+    //先找到一个id值
+    var id = req.params.id;
+    Purchase.findByIdAndRemove(id, function(err, data) {
+        res.json({ message: '删除成功' });
+    });
+}
 
 // 修改商品 req.params /:id
 exports.update = function(req, res, next) {
     //先找到一个id值
     const id = req.params.id;
-    Goods.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
+    Purchase.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
         res.json(data);
     });
 }
@@ -87,7 +87,7 @@ exports.listEverything = function(req, res, next) {
     var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
-    Goods.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+    Purchase.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
         // console.log(result);
         res.json(result);
     });
@@ -102,13 +102,15 @@ exports.listbyProvideCode = function(req, res, next) {
     // console.log(page, limit);
     if (req.body.provideCode && req.body.provideCode.trim().length > 0) {
         // console.log(req.body._id);
+        // console.log(req.body.provideCode);
+
         provideCode = req.body.provideCode;
         //     console.log(username);
         queryCondition = {
             provideCode: provideCode
         };
         // console.log(queryCondition);
-        Goods.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+        Purchase.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
             // console.log(result);
             res.json(result);
         });

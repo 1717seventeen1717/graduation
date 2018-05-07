@@ -1,18 +1,18 @@
 var mongoose = require('mongoose');
-var Check = require("../model/check_moduel"); //数据模型
+var Send = require("../model/send_moduel"); //数据模型
 var moment = require("moment");
 
 //增加订单
 exports.create = function(req, res, next) {
-    var check = new Check(req.body); //实例化对象req.body代表post数据提交，并且参数从body中获取
-    console.log(check);
+    var send = new Send(req.body); //实例化对象req.body代表post数据提交，并且参数从body中获取
+    // console.log(send);
     var reg = new RegExp(/([+][^/]+)$/);
     var dateTime = moment().format();
     dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
     console.log(dateTime);
-    check.date = dateTime;
+    send.date = dateTime;
     // console.log(provider);
-    check.save().then(function(data) {
+    send.save().then(function(data) {
         // console.log(data);
         res.json(data);
     });
@@ -28,7 +28,7 @@ exports.update = function(req, res, next) {
         dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
         req.body.date = dateTime;
         console.log(req.body);
-        Check.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
+        Send.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
             // data.date = dateTime;
             // console.log(data);
             res.json(data);
@@ -49,7 +49,7 @@ exports.listEverything = function(req, res, next) {
     var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
-    Check.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+    Send.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
         // console.log(result);
         res.json(result);
     });
@@ -73,7 +73,7 @@ exports.listbyuserandgoods = function(req, res, next) {
             status: status
         };
         // console.log(queryCondition);
-        Check.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+        Send.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
             // console.log(result);
             res.json(result);
         });
@@ -96,7 +96,7 @@ exports.listbyuserandarrearage = function(req, res, next) {
             userName: userName
         };
         // console.log(queryCondition);
-        Check.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+        Send.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
             // console.log(result);
             res.json(result);
         });
@@ -117,18 +117,51 @@ exports.listbyusername = function(req, res, next) {
             userName: userName
         };
         // console.log(queryCondition);
-        Check.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+        Send.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
             // console.log(result);
             res.json(result);
         });
     }
 }
 
+//查询准备发货的订单以及属于用户名匹配的订单
+exports.listbyload = function(req, res, next) {
+    var page = req.body.page ? req.body.page : 1;
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
+    var queryCondition = {}; //查询条件里面写查询语句
+    // console.log(page, limit);
+    if (req.body.workerName && req.body.workerName.trim().length > 0) {
+        // console.log(req.body._id);
+        // userName = req.body.userName;
+        workerName = req.body.workerName;
+        console.log(workerName);
+        // console.log(userName);
+        queryCondition = {
+            "$or": [{ workerName: workerName }, { workerName: "暂时无人发货" }]
+        }
+        console.log(queryCondition);
+        Send.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+            // console.log(result);
+            res.json(result);
+        });
+    }
+    //  else {
+    //     workerName = "暂无此人";
+    //     queryCondition = {
+    //         workerName: '暂时无人'
+    //     }
+    //     Send.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+    //         // console.log(result);
+    //         res.json(result);
+    //     });
+    // }
+}
+
 //删除订单
 exports.remove = function(req, res, next) {
     //先找到一个id值
     var id = req.params.id;
-    Check.findByIdAndRemove(id, function(err, data) {
+    Send.findByIdAndRemove(id, function(err, data) {
         res.json({ message: '删除成功' });
     });
 }

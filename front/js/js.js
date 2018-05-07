@@ -74,16 +74,23 @@ $(function () {
 			var str=decodeURI(document.cookie);
 //			console.log(str);
 			var arr=str.split(';');
+			var arr1=[];
+			var arr2=[];
 //			console.log(arr);
 			for(var i=0;i<arr.length;i++){
-				var arr1=arr[i].split('=');
- 				if(arr1[0]==key){
-//					console.log(arr1[1]);
-					return arr1[1];
+				var s=arr[i].split('=');
+				arr1.push(s[0].replace(/\s/g, ""));
+				arr2.push(s[1].replace(/\s/g, ""));
+			}
+			for(var i=0;i<arr1.length;i++){
+//				console.log(arr1);
+				if(arr1[i]==key){
+//					console.log(arr1[i]);
+					return arr2[i];
 				}
 			}
 	}
-	var cookie=getCookie('UserName');
+	var cookie=getCookie('UserNameManager');
 //	console.log(cookie);
 	$oA=$('.publicHeaderR .in-login');
 	$oH=$('.wFont h2');
@@ -107,6 +114,11 @@ $(function () {
                 <li><a href="providerList.html">供应商管理</a></li>
                 <li><a href="userList.html">用户管理</a></li>
                 <li><a href="goodsList.html">商品管理</a></li>
+                <li><a href="purchaseList.html">采购管理</a></li>
+                <li><a href="deliveryList.html">收货管理</a></li>
+                <li><a href="stockList.html">库存管理</a></li>
+                <li><a href="rejectedList.html">退货清单管理</a></li>
+                <li><a href="sendListManager.html">发货情况</a></li>
                 <li><a href="login.html">退出系统</a></li>
             </ul>`;
     oNav.append(html);  

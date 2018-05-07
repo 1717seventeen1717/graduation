@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>我的订单</title>
+		<title>我的发货单</title>
 		<link rel="stylesheet" href="css/public.css"/>
 	    <link rel="stylesheet" href="css/style.css"/>
 	    <link type="favicon" rel="shortcut icon" href="img/favicon.ico" />
@@ -10,7 +10,7 @@
 	    	body{
 	    		background: #fff;
 	    	}
-	    	.buy,.confirm{
+	    	.send,.confirm{
     	 	margin-left: 20px;
 		    width: 100px;
 		    padding: 0 20px;
@@ -21,23 +21,8 @@
 		    font-weight: bold;
 		    /*background:#87c212 url("../img/search.png") 10px center no-repeat;*/
 		    cursor: pointer;
-    		background: linear-gradient(to bottom,#baf076,#a2d866,#9cd055,#8dc838,#8bc93a);
+    		background: linear-gradient(to bottom,#baf076,#a2d866,#9cd055,#8dc838,#8bc93a);;
     	}
-    		.goback{
-    			/*margin-left: 20px;*/
-    			margin-top: 20px;
-    			margin-right: 70px;
-			    width: 100px;
-			    padding: 0 20px;
-			    height: 30px;
-			    border: 1px solid #7ba92c;
-			    border-radius: 4px;
-			    color: #fff;
-			    font-weight: bold;
-			    float: right;
-			    background:#87c212 url("../img/search.png") 10px center no-repeat;
-			    cursor: pointer;
-    		}
 	    </style>
 	</head>
 	<body>
@@ -58,20 +43,19 @@
                     <th width="10%">用户名</th>
                     <th width="10%">商品名称</th>
                     <th width="10%">商品数量</th>
-                    <th width="10%">当前商品总金额</th>
+                    <th width="10%">送货员</th>
+                    <!--<th width="10%">当前商品总金额</th>-->
                     <th width="10%">地址</th>
-                    <th width="10%">商品情况</th>
+                    <th width="10%">送货情况</th>
                     <th width="10%">创建时间</th>
                     <th width="20%">操作</th>
                 </tr>
         </table>
-        
-		<input type="button" value="返回主页面" class="goback"/>
 	</body> 
 	<script src="js/jquery-3.3.1.js"></script>
 	<script src="js/js.js"></script>
 	<!--<script src="js/time.js"></script>-->
 	<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/paginate.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/mycheck.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/sendList.js" type="text/javascript" charset="utf-8"></script>
 </html>

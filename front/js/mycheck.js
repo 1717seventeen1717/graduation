@@ -6,8 +6,11 @@
 //			var html='';
 			$.ajax({
 				type:"post",
-				url:"http://localhost:3000/checks/listEverything",
-				async:true
+				url:"http://localhost:3000/checks/listbyusername",
+				async:true,
+				data:{
+					userName:getCookie('UserNamePerson')
+				}
 			}).done(function(data){
 //				console.log(data);
 				addTable(data);
@@ -18,6 +21,12 @@
 //  	console.log($('tr'));
 //  	console.log($('.providerTable'));
     });
+    $('.goback').click(function(){
+    	var a=confirm('您确定返回吗？');
+    	if(a){
+    		window.location.href='index.html';
+    	}
+    })
 })();
 
 

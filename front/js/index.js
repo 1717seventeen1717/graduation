@@ -4,19 +4,38 @@
 			var str=decodeURI(document.cookie);
 //			console.log(str);
 			var arr=str.split(';');
+			var arr1=[];
+			var arr2=[];
 //			console.log(arr);
 			for(var i=0;i<arr.length;i++){
-				var arr1=arr[i].split('=');
- 				if(arr1[0]==key){
-//					console.log(arr1[1]);
-					return arr1[1];
+				var s=arr[i].split('=');
+				arr1.push(s[0].replace(/\s/g, ""));
+				arr2.push(s[1].replace(/\s/g, ""));
+			}
+			for(var i=0;i<arr1.length;i++){
+//				console.log(arr1);
+				if(arr1[i]==key){
+//					console.log(arr1[i]);
+					return arr2[i];
 				}
 			}
 	}
-	var cookie=getCookie('UserName');
+	var cookie=getCookie('UserNamePerson');
+	console.log(cookie);
 	$oA=$('.true-nav .in-login');
+	$oLogin=$('.login-after');
 	if(cookie){
 		$oA.html("您好:"+cookie+"");
+		$('.updatepwd').css('display','inline');
+		$('.exitindex').css('display','inline');
+		$('.exitindex').click(function(){
+			var a=confirm('您确定要退出吗');
+			if(a){
+				window.location.href='login.html';
+				delCookie('UserNamePerson');
+			}
+		})
+		$oLogin.html("您好:"+cookie+"");
 	}
 	else{
 //		alert(1);
@@ -586,7 +605,7 @@
 //		console.log($truehour.html());
 //		console.log($trueminute.html());
 		function djs(){
-			var future=new Date("2019-4-20 00:00:00");
+			var future=new Date("2029-4-20 00:00:00");
 			var now=new Date();
 			var time=(future-now)/1000;
 //			console.log(time);
@@ -939,13 +958,23 @@
 	var numarr=[];//存放数量的值。
 	function getCookie(key){
 		var str=decodeURI(document.cookie);
-		var arr=str.split(';');
-		for(var i=0;i<arr.length;i++){
-			var arr1=arr[i].split('=');
-			if(arr1[0]==key){
-				return arr1[1];
+//			console.log(str);
+			var arr=str.split(';');
+			var arr1=[];
+			var arr2=[];
+//			console.log(arr);
+			for(var i=0;i<arr.length;i++){
+				var s=arr[i].split('=');
+				arr1.push(s[0].replace(/\s/g, ""));
+				arr2.push(s[1].replace(/\s/g, ""));
 			}
-		}
+			for(var i=0;i<arr1.length;i++){
+//				console.log(arr1);
+				if(arr1[i]==key){
+//					console.log(arr1[i]);
+					return arr2[i];
+				}
+			}
 	}
 	function addCookie(key,value,day){
 		var date=new Date();//创建日期对象
@@ -1005,7 +1034,7 @@
 		});
 		var addCart=$('.ul-item-1 li .button-div .addCart');
 		var newPrice=$('.ul-item-1 .new-price span');
-		var userName=getCookie('UserName');
+		var userName=getCookie('UserNamePerson');
 //		console.log(userName);
 		console.log(addCart[0]);
 		addCart.click(function(){
@@ -1032,58 +1061,59 @@
 				async:true,
 				data:{
 					userName:$('.in-login').html().substr(3),
-					goods:data.docs[index].goods
+					goods:data.docs[index].goods,
+					status:'未付款'
 				}
 			}).done(function(data2){
-//				console.log(data.docs);
+//				console.log(data2.docs.length);
 //				var oSum=$('.new-price').eq(index).find('span').html();
-				var oSum=data.docs[index].price*2.5;
+//				var oSum=data.docs[index].price*2.5;
 //				console.log(oSum);
+				//若已加过购物车，直接打开购物车页面
 				if(data2.docs.length>0){
+					var oSum=data.docs[index].price*2.5;
 					window.open('cart.html');
 				}
+				//若没有，则添加
 				else{
+					var oSum=data.docs[index].price*2.5;
+//					console.log(oSum);
+					console.log(getCookie('UserNamePerson'));
 					$.ajax({
-							type:"post",
-							url:"http://localhost:3000/checks/data",
-							async:true,
-							data:{
-								userName:$('.in-login').html().substr(3),
-								provideCode:data.docs[index].provideCode,
-								goods:data.docs[index].goods,
-								number:1,
-								price:data.docs[index].price,
-								sum:oSum,
-								status:'未付款',
-								desc:data.docs[index].desc,
-								url:arr[index]
-								
-							}
-					}).done(function(){
-						window.open('cart.html');
+						type:"post",
+						url:"http://localhost:3000/users/listbyusername",
+						async:true,
+						data:{
+							username:getCookie('UserNamePerson')
+						}
+					}).done(function(data1){
+						console.log(data1);
+						var userArea=data1.docs[0].area;
+						console.log(userArea);
+						$.ajax({
+								type:"post",
+								url:"http://localhost:3000/checks/data",
+								async:true,
+								data:{
+									userName:$('.in-login').html().substr(3),
+									provideCode:data.docs[index].provideCode,
+									goods:data.docs[index].goods,
+									number:1,
+									price:data.docs[index].price,
+									sum:oSum,
+									status:'未付款',
+									desc:data.docs[index].desc,
+									url:arr[index],
+									area:userArea
+								}
+						}).done(function(){
+							window.open('cart.html');
+						});
 					});
+					
 					
 				}
 			});
-//			$.ajax({
-//							type:"post",
-//							url:"http://localhost:3000/checks/data",
-//							async:true,
-//							data:{
-//								userName:$('.in-login').html().substr(3),
-//								provideCode:data.docs[index].provideCode,
-//								goods:data.docs[index].goods,
-//								number:1,
-//								sum:data.docs[index].price*num,
-//								status:'未付款',
-//								desc:data.docs[index].desc,
-//							}
-//				});
-//			}
-			
-//			console.log(data.docs[index].provideCode);
-//			console.log(newPrice.eq(index).html());
-//			open('cart.html');
 		})
 //		$.each(addCart, function(i) {
 //			addCart.eq(i).click(function(){

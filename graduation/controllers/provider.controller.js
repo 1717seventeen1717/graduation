@@ -84,10 +84,10 @@ exports.update = function(req, res, next) {
 //查询所有数据
 exports.listEverything = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
-    Provider.paginate(queryCondition, {}, function(err, result) {
+    Provider.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
         // console.log(result);
         res.json(result);
     });
@@ -97,7 +97,7 @@ exports.listEverything = function(req, res, next) {
 //根据id查询供货商所有信息
 exports.listbyid = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 3; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     if (req.body._id && req.body._id.trim().length > 0) {
@@ -119,7 +119,7 @@ exports.listbyid = function(req, res, next) {
 
 exports.listbyProviderCode = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     if (req.body.providerCode && req.body.providerCode.trim().length > 0) {
@@ -130,7 +130,7 @@ exports.listbyProviderCode = function(req, res, next) {
             providerCode: providerCode
         };
         // console.log(queryCondition);
-        Provider.paginate(queryCondition, {}, function(err, result) {
+        Provider.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
             // console.log(result);
             res.json(result);
         });
@@ -141,7 +141,7 @@ exports.listbyProviderCode = function(req, res, next) {
 
 exports.listbyProvide = function(req, res, next) {
     var page = req.body.page ? req.body.page : 1;
-    var limit = req.body.limit ? req.body.limit : 30; //一页显示3条
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
     var queryCondition = {}; //查询条件里面写查询语句
     // console.log(page, limit);
     console.log(1);
@@ -154,7 +154,7 @@ exports.listbyProvide = function(req, res, next) {
             provide: provide
         };
         console.log(queryCondition);
-        Provider.paginate(queryCondition, {}, function(err, result) {
+        Provider.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
             // console.log(result);
             res.json(result);
         });

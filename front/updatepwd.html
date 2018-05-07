@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>个人注册</title>
+		<title>个人修改</title>
 		<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
 		<link rel="stylesheet" type="text/css" href="css/others.css"/>
 		<link rel="stylesheet" type="text/css" href="css/font.css"/>
@@ -18,7 +18,7 @@
 				<div class="header-main clear w">
 					<a href="javascript:;" class="logo"></a>
 					<div class="logo-title">
-						欢迎注册
+						请修改信息
 					</div>
 					<div class="header-right right">
 						已有账号？
@@ -37,8 +37,8 @@
 						<form action="http://localhost:3000/users/data" method="post" class="register-form" autocomplete="off">
 								<div id="username" class="filed">
 									<label class="title">用　户　名</label>
-									<i class="warning-title">您的账户名和登录名</i>
-									<input type="text" name="username" id="usernameIp" autocomplete="off"/>
+									<i class="warning-title"></i>
+									<input type="text" name="username" id="usernameIp" autocomplete="off" disabled="disabled"/>
 									<p></p>
 									<i class="i-status"></i>
 								</div>
@@ -73,15 +73,15 @@
 									<label class="title phone-area"><i>中国 0086</i>
 									<a href="javascript:;" class="adown"></a>
 									</label>
-									<i class="warning-title">建议使用常用手机</i>
+									<i class="warning-title"></i>
 									<input type="text" name="phoneNumber" id="telIp"/>
 									<p></p>
 									<i class="i-status"></i>
-									<p class="manager-block"><a href="javascript:;">注册成为管理员或者快递员</a></p>
+									<p class="manager-block"><a href="javascript:;">申请成为管理员</a></p>
 								</div>
 								<div id="area" class="filed">
 									<label class="title">常用地址</label>
-									<i class="warning-title">请输入常用地址</i>
+									<i class="warning-title"></i>
 									<input type="text" name="area" id="areaIp"/>
 									<p></p>
 									<i class="i-status"></i>
@@ -94,7 +94,7 @@
 									<i class="i-status"></i>
 								</div>-->
 								<div id="button" class="filed">
-									<input type="button" name="submit" id="submit" value="立即注册" class="submit"/>
+									<input type="button" name="submit" id="submit" value="立即修改" class="submit"/>
 								</div>
 						</form>
 						<!--地区号码下拉框-->
@@ -262,6 +262,7 @@
 			</div>
 		</div>
 		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/updatepwd.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
