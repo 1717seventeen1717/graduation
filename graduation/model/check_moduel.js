@@ -6,6 +6,7 @@ var ChecksSchema = new mongoose.Schema({
     userName: String,
     provideCode: String,
     goods: String,
+    phoneNumber: String,
     number: String,
     price: String,
     sum: String,

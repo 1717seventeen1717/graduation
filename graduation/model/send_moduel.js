@@ -8,6 +8,7 @@ var SendSchema = new mongoose.Schema({
     // provideCode: String,
     workerName: String,
     goods: String,
+    phoneNumber: String,
     number: String,
     price: String,
     sum: String,

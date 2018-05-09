@@ -96,6 +96,7 @@
 											    status: '已入库'
 											}
 										}).done(function(data2){
+											window.location.reload();
 //											console.log(data2);
 										});
 									}
@@ -112,6 +113,8 @@
 											data:{
 												number:parseInt(oNumber)+parseInt(data.docs[index].deliveryNumber)
 											}
+										}).done(function(){
+											window.location.reload();
 										});
 									}
 								});

@@ -1020,8 +1020,10 @@
 					</span>
 				</div>
 			</div>
-			<div class="button-div"><input type="button" value="查看详情" name="detail" class="detail middle-button"><input type="button" value="加入购物车" name="addCart" class="addCart middle-button" index="${i}"></div>
+			<div class="button-div" style="left:130px"><input type="button" value="加入购物车" name="addCart" class="addCart middle-button" index="${i}"></div>
 			</li>`;
+//			<div class="button-div"><input type="button" value="查看详情" name="detail" class="detail middle-button"><input type="button" value="加入购物车" name="addCart" class="addCart middle-button" index="${i}"></div>
+			
 		});
 		oUl.append(html);
 	}).done(function(data){
@@ -1089,6 +1091,7 @@
 					}).done(function(data1){
 						console.log(data1);
 						var userArea=data1.docs[0].area;
+						var phoneNumber=data1.docs[0].phoneNumber;
 						console.log(userArea);
 						$.ajax({
 								type:"post",
@@ -1099,6 +1102,7 @@
 									provideCode:data.docs[index].provideCode,
 									goods:data.docs[index].goods,
 									number:1,
+									phoneNumber:phoneNumber,
 									price:data.docs[index].price,
 									sum:oSum,
 									status:'未付款',

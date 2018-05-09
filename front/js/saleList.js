@@ -93,8 +93,7 @@ function addTable(obj){
 					<td class="tdStatus">${obj.docs[i].status}</td>
 					<td>${obj.docs[i].date}</td>
 					<td class="tdInput">
-                        
-						<input type="button" value="退款" class="refund commonRefund"/>
+                        <input type="button" value="发货" class="fahuo common"/>
 		           </td>
 		                    </tr>`;
 		//			html+=`<tr><td>${data.docs[i]._id}</td></tr>`;	

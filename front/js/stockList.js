@@ -13,7 +13,8 @@
 				addTable(data);
 //				insertdelivery(data);
 //				paginate();
-			}).done(function(){
+			}).done(function(data){
+//				console.log(data);
 				$('.Update').click(function(){
 //					console.log($(this));
 					getId($(this));
@@ -52,7 +53,6 @@ function addTable(obj){
 					<td>${obj.docs[i].provideCode}</td>
 					<td>${obj.docs[i].goods}</td>
 					<td>${obj.docs[i].number}</td>
-					<td>${obj.docs[i].status}</td>
 					<td>${obj.docs[i].date}</td>
 					<td>
                         <a href="deliveryUpdate.html" class="Update"><img src="img/xiugai.png" alt="修改" title="修改"/></a>

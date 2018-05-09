@@ -7,7 +7,7 @@ var page;            //总页数
 var begin;
 var end;
 function paginate(){
-		    	len =$(".providerTable tr").length - 1;  // 求这个表的总行数，剔除第一行介绍
+		    	len =$(".providerTable tr").length - 1;  // 求这个表的总行数，不要第一行介绍
 //		    	console.log(len);
 		    	page=len % pageSize==0 ? len/pageSize : Math.floor(len/pageSize)+1;//根据记录条数，计算页数
 //		    	console.log(page);

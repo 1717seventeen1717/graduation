@@ -9,6 +9,7 @@ router.post('/listEverything', dataCtrl.listEverything); //查询所有供货商
 router.post('/listbyid', dataCtrl.listbyid); //根据id查询供货商数据
 router.post('/listbyProviderCode', dataCtrl.listbyProviderCode); //根据id查询供货商数据
 router.post('/listbyProvide', dataCtrl.listbyProvide); //根据商品名称查询单价
+router.post('/listUserVague', dataCtrl.listUserVague); //根据输入的数据名称查询信息
 
 
 

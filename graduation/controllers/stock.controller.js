@@ -68,38 +68,52 @@ exports.update = function(req, res, next) {
     });
 }
 
-//根据商品编号修改
-exports.updatebyProvideCode = function(req, res, next) {
-    //先找到一个id值
-    const id = req.params.id;
-    console.log(id);
-    var reg = new RegExp(/([+][^/]+)$/);
-    var dateTime = moment().format();
-    dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
-    req.body.date = dateTime;
-    console.log(req.body);
-    Stock.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
-        // data.date = dateTime;
-        // console.log(data);
-        res.json(data);
-    });
+// 根据商品名称修改
+// exports.updatebyProvideName = function(req, res, next) {
+//     //先找到一个id值
+//     const goods = req.params.goods;
+//     console.log(goods);
+//     Stock.findOne()
+//     var reg = new RegExp(/([+][^/]+)$/);
+//     var dateTime = moment().format();
+//     dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
+//     req.body.date = dateTime;
+//     console.log(req.body);
+//     var queryCondition = {};
+//     queryCondition={
+//         goods:goods
+//     }
+//     Stock.update(queryCondition, { $set: req.body }, { new: false }).then(function(data) {
+//         // data.date = dateTime;
+//         // console.log(data);
+//         res.json(data);
+//     });
+// }
 
-    //先找到一个id值
-    var provideCode = req.params.provideCode;
-    var reg = new RegExp(/([+][^/]+)$/);
-    var dateTime = moment().format();
-    dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
-    // console.log(purchaseId);
-    queryCondition = {
-        provideCode: provideCode,
-        date: dateTime
-    };
+//根据商品名称修改
+// exports.updatebyProvideName = function(req, res, next) {
+//     //先找到一个id值
+//     // const goods = req.params.goods;
+//     // console.log(goods);
+//     var reg = new RegExp(/([+][^/]+)$/);
+//     var dateTime = moment().format();
+//     dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
+//     req.body.date = dateTime;
+//     console.log(req.body);
+//     var queryCondition = {};
+//     if (req.body.goods && req.body.goods.trim().length > 0) {
+//         var goods = req.body.goods;
+//         queryCondition = {
+//             goods: goods
+//         }
+//     }
+//     Stock.find(queryCondition, { $set: req.body }, { new: false }).then(function(data) {
+//         // data.date = dateTime;
+//         console.log(data);
+//         res.json(data);
+//     });
+// }
 
-    Rejected.update(queryCondition, function(err, data) {
-        res.json({ message: '删除成功' });
-    });
-
-}
 
 //查询供应商
 // exports.list = function(req, res, next) {
@@ -163,6 +177,30 @@ exports.listbyProvideCode = function(req, res, next) {
         //     console.log(username);
         queryCondition = {
             provideCode: provideCode
+        };
+        // console.log(queryCondition);
+        Stock.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+            // console.log(result);
+            res.json(result);
+        });
+    }
+}
+
+
+// 根据商品名称查询库存所有信息
+exports.listbyGoods = function(req, res, next) {
+    var page = req.body.page ? req.body.page : 1;
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
+    var queryCondition = {}; //查询条件里面写查询语句
+    // console.log(page, limit);
+    if (req.body.goods && req.body.goods.trim().length > 0) {
+        // console.log(req.body._id);
+        // console.log(req.body.provideCode);
+
+        goods = req.body.goods;
+        //     console.log(username);
+        queryCondition = {
+            goods: goods
         };
         // console.log(queryCondition);
         Stock.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {

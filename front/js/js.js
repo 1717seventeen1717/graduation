@@ -118,6 +118,7 @@ $(function () {
                 <li><a href="deliveryList.html">收货管理</a></li>
                 <li><a href="stockList.html">库存管理</a></li>
                 <li><a href="rejectedList.html">退货清单管理</a></li>
+                 <li><a href="saleList.html">销售管理</a></li>
                 <li><a href="sendListManager.html">发货情况</a></li>
                 <li><a href="login.html">退出系统</a></li>
             </ul>`;

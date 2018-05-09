@@ -490,7 +490,8 @@ $('.submitA').click(function(){
 	            		area:$('.areatext').val()
 	            	}
 	            }).done(function(data){
-	            	window.open('mycheck.html');
+//	            	window.open('mycheck.html');
+	            	window.location.reload();
 	            });
 	        }
 	    });
@@ -601,3 +602,11 @@ function putarea(){
 	   })
 	});
 }
+//点击返回 回到主页面
+$('.goback').click(function(){
+	var a=confirm('您确定要回到主页面吗？');
+	if(a){
+		window.location.href='index.html';
+	}
+	
+})
