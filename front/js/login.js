@@ -61,7 +61,7 @@
 							$type='普通用户';
 						}
 						else if($('#Worker').attr('checked')){
-							$type='工人'
+							$type='快递员'
 						}
 					}
 					else{
@@ -114,7 +114,7 @@
 										}
 
 									}
-									else if($type=='工人'){
+									else if($type=='快递员'){
 										addCookie('UserNameWorker',$username,7);
 										location.href='sendList.html';
 									}

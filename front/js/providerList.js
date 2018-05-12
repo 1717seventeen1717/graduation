@@ -105,13 +105,6 @@ function addTable(obj){
 	view();
 }
 
-//清空表格
-function clearTable(){
-	var oTbody=$('.providerTable tbody tr').not('.firstTr');
-//	console.log(oTbody);
-	oTbody.remove();
-}
-
 
 //点击右侧按钮 获取当前行id
 function view(){

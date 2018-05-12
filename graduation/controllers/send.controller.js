@@ -157,6 +157,32 @@ exports.listbyload = function(req, res, next) {
     // }
 }
 
+
+
+//模糊查询用户
+exports.listUserVague = function(req, res, next) {
+    var page = req.body.page ? req.body.page : 1;
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
+    var queryCondition = {}; //查询条件里面写查询语句
+    // console.log(page, limit);
+    // console.log(req.body.textValue);
+    if (req.body.textValue && req.body.textValue.trim().length > 0) {
+        textValue = req.body.textValue;
+        userName = req.body.userName;
+        // console.log(textValue);
+        queryCondition = {
+            userName: new RegExp(textValue, "i")
+        };
+        //     console.log(queryCondition);
+        Send.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+            res.json(result);
+        });
+    }
+}
+
+
+
+
 // //模糊查询供货商
 // exports.listProviderVague = function(req, res, next) {
 //     var page = req.body.page ? req.body.page : 1;

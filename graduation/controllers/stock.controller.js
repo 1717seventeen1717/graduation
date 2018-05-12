@@ -68,6 +68,30 @@ exports.update = function(req, res, next) {
     });
 }
 
+
+//模糊商品名
+exports.listGoods = function(req, res, next) {
+    var page = req.body.page ? req.body.page : 1;
+    var limit = req.body.limit ? req.body.limit : 300; //一页显示3条
+    var queryCondition = {}; //查询条件里面写查询语句
+    // console.log(page, limit);
+    // console.log(req.body.textValue);
+    if (req.body.textValue && req.body.textValue.trim().length > 0) {
+        textValue = req.body.textValue;
+        goods = req.body.goods;
+        // console.log(textValue);
+        queryCondition = {
+            goods: new RegExp(textValue, "i")
+        };
+        //     console.log(queryCondition);
+        Stock.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+            res.json(result);
+        });
+    }
+}
+
+
+
 // 根据商品名称修改
 // exports.updatebyProvideName = function(req, res, next) {
 //     //先找到一个id值

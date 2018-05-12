@@ -12,6 +12,9 @@ router.post('/listbyuserandarrearage', dataCtrl.listbyuserandarrearage); //查�
 // router.post('/listbyProvideCode', dataCtrl.listbyProvideCode); //根据商品编号查询供货商数据
 // router.post('/listbyProviderCode', dataCtrl.listbyProviderCode); //根据id查询供货商数据
 router.post('/listbyusername', dataCtrl.listbyusername); //根据用户名查询该用户账单数据
+router.post('/listUserVague', dataCtrl.listUserVague); //模糊查询用户数据
+
+
 
 
 

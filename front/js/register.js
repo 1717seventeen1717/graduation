@@ -382,7 +382,7 @@
                         username:$('#usernameIp').val(),
                         password:$('#password1Ip').val(),
                         phoneNumber:$('#telIp').val(),
-                        type: '工人',
+                        type: '快递员',
                         area:$('#areaIp').val()
                     }
                     

@@ -19,6 +19,7 @@
 				$('[zhushi=name]').html(data.docs[0].username);
 				$('[zhushi=tel]').html(data.docs[0].phoneNumber);
 				$('[zhushi=type]').html(data.docs[0].type);
+				$('[zhushi=area]').html(data.docs[0].area);
 			});
 //  	console.log($('tr'));
 //  	console.log($('.providerTable'));

@@ -56,16 +56,16 @@
    	
 	var oUser=$('#usernameIp');
 	var oTel=$('#telIp');
-	var username=getCookie('UserName');
+	var username=getCookie('UserNamePerson');
 	var oArea=$('#areaIp');
 	var sid;
 	oUser.val(username);
 	$.ajax({
 			type:"post",
 			url:"http://localhost:3000/users/listbyusername",
-			async:false,
+			async:true,
 			data:{
-				username:getCookie('UserName')
+				username:getCookie('UserNamePerson')
 			}
 	}).done(function(data){
 			oTel.val(data.docs[0].phoneNumber);
@@ -73,7 +73,7 @@
 			oArea.val(data.docs[0].area);
 			sid=data.docs[0]._id;
 	})
-	console.log(sid);
+//	console.log(sid);
     //密码动态验证
     $('#password1Ip').focus(function() {
         if (bstoppassword1) {
@@ -299,6 +299,7 @@
         		 $.ajax({
                     type: 'put',
                     url: 'http://localhost:3000/users/data/'+sid,
+                    async:true,
                     data: { //注册的用户名传给后端
                         username:$('#usernameIp').val(),
                         password:$('#password1Ip').val(),
@@ -326,6 +327,7 @@
         		 $.ajax({
                     type: 'put',
                     url: 'http://localhost:3000/users/data/'+sid,
+                    async:true,
                     data: { //注册的用户名传给后端
                         username:$('#usernameIp').val(),
                         password:$('#password1Ip').val(),

@@ -42,9 +42,9 @@ function addTable(obj){
 					<td>${obj.docs[i].number}</td>
 					<td>${obj.docs[i].date}</td>
 					<td>
-                        <a href="providerView.html" class="View"><img src="img/read.png" alt="查看" title="查看"/></a>
-                        <a href="providerUpdate.html" class="Update"><img src="img/xiugai.png" alt="修改" title="修改"/></a>
-                        <a href="#" class="removeProvider"><img src="img/schu.png" alt="删除" title="删除"/></a>
+                        <a href="" class="View"><img src="img/read.png" alt="查看" title="查看"/></a>
+                        <a href="" class="Update"><img src="img/xiugai.png" alt="修改" title="修改"/></a>
+                        <a href="#" class=""><img src="img/schu.png" alt="删除" title="删除"/></a>
 		           </td>
 		                    </tr>`;
 		//			html+=`<tr><td>${data.docs[i]._id}</td></tr>`;	
@@ -55,3 +55,52 @@ function addTable(obj){
 	//点击查看 传输id
 //	view();
 }
+
+
+//点击查询 搜索含有该字符的所有用户名信息
+
+;(function(){
+	var oSearch = $('input[value="查询"]');
+	var oSearchText=$('input[placeholder="请输入商品的名称"]');
+//	$('input[name="radio"]')
+	oSearch.mousedown(function(){
+		oSearch.css('background-color','#5d8410');
+	});
+	
+	oSearch.mouseup(function(){
+		oSearch.css('background-color','');
+	});
+	
+	oSearch.click(function(){
+		var textValue=oSearchText.val();
+		console.log(textValue);
+		if(textValue!=''){
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/goods/listGoods",
+			async:true,
+			data:{
+				textValue:textValue
+			}
+			}).done(function(data){
+					clearTable();
+//					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		else{
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/goods/listEverything",
+			async:true,
+			}).done(function(data){
+					clearTable();
+//					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		
+	})
+})();

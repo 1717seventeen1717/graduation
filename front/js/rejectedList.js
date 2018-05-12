@@ -54,6 +54,56 @@ function addTable(obj){
 //	view();
 }
 
+
+//点击查询 搜索含有该字符的所有用户名信息
+
+;(function(){
+	var oSearch = $('input[value="查询"]');
+	var oSearchText=$('input[placeholder="请输入商品的名称"]');
+//	$('input[name="radio"]')
+	oSearch.mousedown(function(){
+		oSearch.css('background-color','#5d8410');
+	});
+	
+	oSearch.mouseup(function(){
+		oSearch.css('background-color','');
+	});
+	
+	oSearch.click(function(){
+		var textValue=oSearchText.val();
+		console.log(textValue);
+		if(textValue!=''){
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/rejecteds/listGoods",
+			async:true,
+			data:{
+				textValue:textValue
+			}
+			}).done(function(data){
+					clearTable();
+//					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		else{
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/rejecteds/listEverything",
+			async:true,
+			}).done(function(data){
+					clearTable();
+//					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		
+	})
+})();
+
+
 //将数据添加到收货单中 只有选择了收货数量才能生成收货单
 function insertdelivery(){
 //	$.ajax({

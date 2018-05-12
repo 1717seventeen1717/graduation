@@ -1020,7 +1020,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="button-div" style="left:130px"><input type="button" value="加入购物车" name="addCart" class="addCart middle-button" index="${i}"></div>
+			<div class="button-div" style="left:130px"><input type="button" value="加入购物车" name="addCart" class="addCart middle-button" index="${i}"  style="color: #C9302C;"></div>
 			</li>`;
 //			<div class="button-div"><input type="button" value="查看详情" name="detail" class="detail middle-button"><input type="button" value="加入购物车" name="addCart" class="addCart middle-button" index="${i}"></div>
 			

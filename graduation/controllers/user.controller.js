@@ -104,6 +104,7 @@ exports.listsomthing = function(req, res, next) {
         };
         //     console.log(queryCondition);
         User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+            console.log(result);
             res.json(result);
         });
     }

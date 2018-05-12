@@ -19,6 +19,7 @@
 				$('[name=userName]').val(data.docs[0].username).css('color','red');
 				$('[name=password]').val(data.docs[0].password);
 				$('[name=userphone]').val(data.docs[0].phoneNumber);
+				$('[name=userAddress]').val(data.docs[0].area);
 				$('.userType').html(data.docs[0].type).css({'color':'red','margin-left':'0'});
 //				console.log(data.docs[0].type);
 			});

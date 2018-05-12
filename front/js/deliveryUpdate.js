@@ -63,6 +63,7 @@
 	    			//如果没有数据 则添加退货信息
 					if(data1.docs.length<=0){
 						//如果大于0才执行
+						////确认收货生成退货单
 						if(parseInt(number)-parseInt($('.deliveryNumber').val())>0){
 			    			$.ajax({
 			    				type:"post",

@@ -130,3 +130,10 @@ $(function () {
 		$(this).attr('id','active');
 	})
 })();
+
+//清空表格
+function clearTable(){
+	var oTbody=$('.providerTable tbody tr').not('.firstTr');
+//	console.log(oTbody);
+	oTbody.remove();
+}

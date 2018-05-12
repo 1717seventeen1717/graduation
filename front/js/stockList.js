@@ -15,16 +15,16 @@
 //				paginate();
 			}).done(function(data){
 //				console.log(data);
-				$('.Update').click(function(){
-//					console.log($(this));
-					getId($(this));
-				});
-				$('.accept').click(function(){
-					var bstop=confirm('您确定要收货吗？');
-					if(bstop){
-						
-					}
-				})
+//				$('.Update').click(function(){
+////					console.log($(this));
+//					getId($(this));
+//				});
+//				$('.accept').click(function(){
+//					var bstop=confirm('您确定要收货吗？');
+//					if(bstop){
+//						
+//					}
+//				})
 			});
 //			var a=new Date().format('yyyy-MM-dd hh:mm:ss');
 //			console.log(a);
@@ -54,11 +54,12 @@ function addTable(obj){
 					<td>${obj.docs[i].goods}</td>
 					<td>${obj.docs[i].number}</td>
 					<td>${obj.docs[i].date}</td>
-					<td>
-                        <a href="deliveryUpdate.html" class="Update"><img src="img/xiugai.png" alt="修改" title="修改"/></a>
-						
-		           </td>
+					
 		                    </tr>`;
+//		            <td>
+//                      <a href="deliveryUpdate.html" class="Update"><img src="img/xiugai.png" alt="修改" title="修改"/></a>
+//						
+//		           </td>
 		//			html+=`<tr><td>${data.docs[i]._id}</td></tr>`;	
 		//			console.log(i);
 				});
@@ -93,3 +94,51 @@ function getId(obj){
 			addCookie('onlydeliverynumber',data.docs[0].number,7);
 	});
 }
+
+//点击查询 搜索含有该字符的所有用户名信息
+
+;(function(){
+	var oSearch = $('input[value="查询"]');
+	var oSearchText=$('input[placeholder="请输入商品的名称"]');
+//	$('input[name="radio"]')
+	oSearch.mousedown(function(){
+		oSearch.css('background-color','#5d8410');
+	});
+	
+	oSearch.mouseup(function(){
+		oSearch.css('background-color','');
+	});
+	
+	oSearch.click(function(){
+		var textValue=oSearchText.val();
+		console.log(textValue);
+		if(textValue!=''){
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/stocks/listGoods",
+			async:true,
+			data:{
+				textValue:textValue
+			}
+			}).done(function(data){
+					clearTable();
+//					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		else{
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/stocks/listEverything",
+			async:true,
+			}).done(function(data){
+					clearTable();
+//					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		
+	})
+})();

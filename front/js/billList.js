@@ -68,6 +68,56 @@
 
 
 
+//点击查询 搜索含有该字符的所有用户名信息
+
+;(function(){
+	var oSearch = $('input[value="查询"]');
+	var oSearchText=$('input[placeholder="请输入用户名"]');
+//	$('input[name="radio"]')
+	oSearch.mousedown(function(){
+		oSearch.css('background-color','#5d8410');
+	});
+	
+	oSearch.mouseup(function(){
+		oSearch.css('background-color','');
+	});
+	
+	oSearch.click(function(){
+		var textValue=oSearchText.val();
+//		console.log(textValue);
+		if(textValue!=''){
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/checks/listUserVague",
+			async:true,
+			data:{
+				textValue:textValue
+			}
+			}).done(function(data){
+					clearTable();
+					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		else{
+			$.ajax({
+			type:"post",
+			url:"http://localhost:3000/checks/listEverything",
+			async:true,
+			}).done(function(data){
+					clearTable();
+					console.log(data);
+					addTable(data);
+//					paginate();
+				});
+		}
+		
+	})
+})();
+
+
+
 
 
 //拼接表格函数
