@@ -292,7 +292,7 @@
                     $(this).parent().find('p').eq(0).css('display', 'none');
 				}
 				else{
-					$(this).parent().find('p').eq(0).html(`<em></em>工人口令不正确`).css('display', 'block');
+//					$(this).parent().find('p').eq(0).html(`<em></em>工人口令不正确`).css('display', 'block');
                     bstopworkerKey = true;
 				}
             } else {

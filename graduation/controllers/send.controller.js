@@ -26,7 +26,7 @@ exports.update = function(req, res, next) {
         var reg = new RegExp(/([+][^/]+)$/);
         var dateTime = moment().format();
         dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
-        req.body.date = dateTime;
+        req.body.sendTime = dateTime;
         console.log(req.body);
         Send.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
             // data.date = dateTime;

@@ -141,12 +141,12 @@ function addTable(obj){
 					<td>${obj.docs[i].sum}</td>
 					<td class="tdArea">${obj.docs[i].area}</td>
 					<td class="tdStatus">${obj.docs[i].status}</td>
-					<td>${obj.docs[i].date}</td>
 					<td class="tdInput">
                         
 						<input type="button" value="退款" class="refund commonRefund"/>
 		           </td>
 		                    </tr>`;
+//		                    <td>${obj.docs[i].date}</td>
 		//			html+=`<tr><td>${data.docs[i]._id}</td></tr>`;	
 		//			console.log(i);
 	});
@@ -192,8 +192,8 @@ function addTable(obj){
 			else{
 				var number=0;
 			}
-			console.log(number);
-			console.log(oNumber.eq(i).html());
+//			console.log(number);
+//			console.log(oNumber.eq(i).html());
 //			var number=data.docs[0].number?data.docs[0].number:0;
 //			console.log(data.docs[0].number);
 //			console.log(oNumber.eq(i).html());

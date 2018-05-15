@@ -7,21 +7,23 @@
 			var arr1=[];
 			var arr2=[];
 //			console.log(arr);
-			for(var i=0;i<arr.length;i++){
+			if(str){
+				for(var i=0;i<arr.length;i++){
 				var s=arr[i].split('=');
 				arr1.push(s[0].replace(/\s/g, ""));
 				arr2.push(s[1].replace(/\s/g, ""));
-			}
-			for(var i=0;i<arr1.length;i++){
-//				console.log(arr1);
-				if(arr1[i]==key){
-//					console.log(arr1[i]);
-					return arr2[i];
+				}
+				for(var i=0;i<arr1.length;i++){
+	//				console.log(arr1);
+					if(arr1[i]==key){
+	//					console.log(arr1[i]);
+						return arr2[i];
+					}
 				}
 			}
 	}
 	var cookie=getCookie('UserNamePerson');
-	console.log(cookie);
+//	console.log(cookie);
 	$oA=$('.true-nav .in-login');
 	$oLogin=$('.login-after');
 	if(cookie){
@@ -1006,7 +1008,7 @@
 //			console.log(lastindex);
 			arr[i]='img/'+data.docs[i].url.replace(/\\/g,'/').substr(lastindex+1);
 //			console.log(arr[i]);
-			html+=`<li index="${i}"><a href="javascript:;"><img src="${arr[i]}"/></a>
+			html+=`<li index="${i}" style="padding-right:7px"><a href="javascript:;"><img src="${arr[i]}"/></a>
 			<div class="bottom-title">
 				<p class="message-title" style="color:#ccc">${data.docs[i].desc}</p>
 				<div class="price">
@@ -1039,6 +1041,7 @@
 		var userName=getCookie('UserNamePerson');
 //		console.log(userName);
 		console.log(addCart[0]);
+		//点击加入购物车
 		addCart.click(function(){
 			var num=1;
 			var index=$(this).index('.ul-item-1 li .button-div .addCart');

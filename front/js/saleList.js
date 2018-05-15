@@ -141,8 +141,8 @@ function addTable(obj){
 			else{
 				var number=0;
 			}
-			console.log(number);
-			console.log(oNumber.eq(i).html());
+//			console.log(number);
+//			console.log(oNumber.eq(i).html());
 //			var number=data.docs[0].number?data.docs[0].number:0;
 //			console.log(data.docs[0].number);
 //			console.log(oNumber.eq(i).html());
@@ -201,7 +201,9 @@ function checkEnough(obj){
 				url:"http://localhost:3000/checks/data/"+checkidValue,
 				async:true,
 				data:{
-					status:'正在匹配快递员'
+					status:'正在匹配快递员',
+					acceptTime:'未收货',
+					sendTime:'未送达'
 				}
 			}).done(function(data){
 				oInput.eq(indexAll).removeClass('fahuo');

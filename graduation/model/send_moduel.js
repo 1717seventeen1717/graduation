@@ -16,7 +16,8 @@ var SendSchema = new mongoose.Schema({
     status: String,
     // desc: String,
     // url: String,
-    date: String
+    date: String,
+    sendTime: String
 });
 
 SendSchema.plugin(mongoosePaginate);

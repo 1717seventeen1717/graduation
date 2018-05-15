@@ -487,7 +487,9 @@ $('.submitA').click(function(){
 	            	async:true,
 	            	data:{
 	            		status:'已付款',
-	            		area:$('.areatext').val()
+	            		area:$('.areatext').val(),
+	            		acceptTime:'未收货',
+	            		sendTime:'未送达'
 	            	}
 	            }).done(function(data){
 //	            	window.open('mycheck.html');
@@ -550,7 +552,9 @@ function putCheck(obj,index){
     	data:{
     		number:obj.parents('.goods-item').find('.quantity-form input').val(),
     		sum:obj.parents('.goods-item').find('.b-sum strong').html(),
-    		area:sarea
+    		area:sarea,
+    		acceptTime:'未收货',
+    		sendTime:'未送达'
     	}
    }).done(function(data){
    		
@@ -595,7 +599,9 @@ function putarea(){
 	    	url:"http://localhost:3000/checks/data/"+sid[i],
 	    	async:true,
 	    	data:{
-	    		area:sarea
+	    		area:sarea,
+	    		sendTime:'未送达',
+	    		acceptTime:'未收货'
 	    	}
 	   }).done(function(data){
 //	   	console.log(data);

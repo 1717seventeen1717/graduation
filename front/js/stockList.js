@@ -14,6 +14,17 @@
 //				insertdelivery(data);
 //				paginate();
 			}).done(function(data){
+				$.each($('.tdNumber'), function(i) {
+//					console.log($('.tdNumber').eq(i).html());
+					if(parseInt($('.tdNumber').eq(i).html())<=100){
+						console.log(i);
+						$('.tdNumber').eq(i).addClass('short');
+						$('.tdNumber').eq(i).html(data.docs[i].number+'库存不足，请补仓！');
+					}
+					else{
+						$('.tdNumber').eq(i).removeClass('short');
+					}
+				});
 //				console.log(data);
 //				$('.Update').click(function(){
 ////					console.log($(this));
@@ -52,7 +63,7 @@ function addTable(obj){
 					<td class="tdUsername">${obj.docs[i].providerName}</td>
 					<td>${obj.docs[i].provideCode}</td>
 					<td>${obj.docs[i].goods}</td>
-					<td>${obj.docs[i].number}</td>
+					<td class="tdNumber">${obj.docs[i].number}</td>
 					<td>${obj.docs[i].date}</td>
 					
 		                    </tr>`;

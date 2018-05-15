@@ -44,8 +44,23 @@ function addTable(obj){
 	var oTbody=$('.providerTable tbody');
 //	console.log(obj.docs);
 	$.each(obj.docs, function(i) {
+		var sendTime;
+		var acceptTime;
+					if(obj.docs[i].sendTime){
+						sendTime=obj.docs[i].sendTime;
+					}
+					else{
+						sendTime='未送达';
+					}
+					if(obj.docs[i].acceptTime){
+						acceptTime=obj.docs[i].acceptTime;
+					}
+					else{
+						acceptTime='未收货';
+					}
 //					console.log(i);
 					var idRegExp = new RegExp(/^\w{0,22}/g);
+//					console.log(acceptTime);
 		//			console.log(data.docs[i]._id);
 //					obj.docs[i]._id=obj.docs[i]._id.replace(idRegExp,'');
 					html+=`<tr>
@@ -58,6 +73,8 @@ function addTable(obj){
 					<td>${obj.docs[i].area}</td>
 					<td class="oStatus">${obj.docs[i].status}</td>
 					<td>${obj.docs[i].date}</td>
+					<td>${sendTime}</td>	
+					<td>${acceptTime}</td>
 					<td>
                         <input type="button" value="确认收货" class="confirm"/>
 		           </td>
@@ -66,6 +83,20 @@ function addTable(obj){
 		//			console.log(i);
 				});
 	oTbody.append(html);
+	$.each($('.confirm'), function(i) {
+//		console.log(obj.docs[i].acceptTime);
+		if(obj.docs[i].acceptTime&&obj.docs[i].acceptTime!='未收货'){
+//			console.log(i);
+			$('.confirm').eq(i).css('background','#ccc');
+			$('.confirm').eq(i).attr('disabled',true);
+			
+		}
+		else{
+			$('.confirm').eq(i).css('background','linear-gradient(to bottom,#baf076,#a2d866,#9cd055,#8dc838,#8bc93a);');
+			$('.confirm').eq(i).attr('disabled',false);
+		
+		}
+	});
 	paginate();
 	//点击查看 传输id
 //	view();
@@ -90,9 +121,12 @@ function updateCheck(obj,data){
 				url:"http://localhost:3000/checks/data/"+id,
 				async:true,
 				data:{
-					status:'买家已收货'
+					status:'买家已收货',
+					sendTime:data.docs[index].sendTime
+//					sendTime:
 				}
 			}).done(function(){
+				
 				window.location.reload();
 			});
 		}
@@ -101,3 +135,13 @@ function updateCheck(obj,data){
 		alert('该商品还未发货，无法确认');
 	}
 }
+
+;(function(){
+	$.ajax({
+		type:"post",
+		url:"http://localhost:3000/checks/listEverything",
+		async:true
+	}).done(function(data){
+//		console.log(data);
+	});
+})();

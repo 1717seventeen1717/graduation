@@ -4,6 +4,7 @@ var dataCtrl = require('../controllers/check.controller');
 
 router.post('/data', dataCtrl.create); //添加商品
 router.put('/data/:id', dataCtrl.update); //修改订单数据
+router.put('/dataonly/:id', dataCtrl.updateonly); //修改订单数据
 // router.put('/data/:userName', dataCtrl.update); //修改订单数据
 router.delete('/data/:id', dataCtrl.remove); //删除订单
 router.post('/listEverything', dataCtrl.listEverything); //查询订单数据

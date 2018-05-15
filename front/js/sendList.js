@@ -87,6 +87,13 @@ function addTable(obj){
 	var oTbody=$('.providerTable tbody');
 //	console.log(obj.docs);
 	$.each(obj.docs, function(i) {
+		var sendTime;
+					if(obj.docs[i].sendTime){
+						sendTime=obj.docs[i].sendTime;
+					}
+					else{
+						sendTime='还未送货';
+					}
 //					console.log(i);
 					var idRegExp = new RegExp(/^\w{0,22}/g);
 		//			console.log(data.docs[i]._id);
@@ -102,6 +109,7 @@ function addTable(obj){
 					<td>${obj.docs[i].area}</td>
 					<td>${obj.docs[i].status}</td>
 					<td>${obj.docs[i].date}</td>
+					<td>${sendTime}</td>
 					<td>
                         <input type="button" value="我要送货" class="send common"/>
 		           </td>
@@ -174,7 +182,8 @@ function updatedata(obj){
 				url:"http://localhost:3000/checks/data/"+checkid,
 				async:true,
 				data:{
-					status:"已送达,送货员"+getCookie('UserNameWorker')+""
+					status:"已送达,送货员"+getCookie('UserNameWorker')+"",
+					acceptTime:'未收货'
 				}
 			}).done(function(){
 					$.ajax({

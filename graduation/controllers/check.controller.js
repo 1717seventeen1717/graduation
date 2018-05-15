@@ -20,6 +20,33 @@ exports.create = function(req, res, next) {
 
 // 修改订单 req.params /:id
 exports.update = function(req, res, next) {
+    //先找到一个id值
+    const id = req.params.id;
+    console.log(id);
+    var reg = new RegExp(/([+][^/]+)$/);
+    var reg1 = new RegExp(/\d+/);
+    var dateTime = moment().format();
+    dateTime = dateTime.replace(/T/, ' ').replace(reg, '');
+    req.body.acceptTime = req.body.acceptTime ? req.body.acceptTime : dateTime;
+    if (req.body.sendTime == '未送达' && req.body.sendTime) {
+        req.body.sendTime = req.body.sendTime;
+    } else if (reg1.test(req.body.sendTime)) {
+        req.body.sendTime = req.body.sendTime;
+    } else {
+        req.body.sendTime = dateTime;
+    }
+
+    console.log(req.body);
+    Check.findByIdAndUpdate(id, { $set: req.body }, { new: false }).then(function(data) {
+        // data.date = dateTime;
+        // console.log(data);
+        res.json(data);
+    });
+}
+
+
+// 修改订单 req.params /:id
+exports.updateonly = function(req, res, next) {
         //先找到一个id值
         const id = req.params.id;
         console.log(id);
