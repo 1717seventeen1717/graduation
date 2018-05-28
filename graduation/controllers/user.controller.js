@@ -41,7 +41,7 @@ exports.list = function(req, res, next) {
             username: new RegExp(username, "i")
         };
         //     console.log(queryCondition);
-        User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) {
+        User.paginate(queryCondition, { page: +page, limit: +limit }, function(err, result) { //+ 字符串强制转换为数字
             res.json(result);
         });
     }
